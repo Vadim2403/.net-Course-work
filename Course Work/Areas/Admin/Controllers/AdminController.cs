@@ -19,8 +19,7 @@ namespace Course_Work.Areas.Admin.Controllers
             List<userModel> list = new List<userModel>();
             foreach(var i in _context.Users.ToList())
             {
-                var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(_context));
-                if (userManager.IsInRole(i.Id, "User"))
+                if (User.Identity.GetUserId() != i.Id)
                 list.Add(new userModel
                 {
                     Id = i.Id,

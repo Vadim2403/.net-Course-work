@@ -8,19 +8,25 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(31,182,115); height:50px; border-color:transparent;">
+        <img style="margin:5px; margin-left:15px; float:left; height: 40px;" src="https://cdn.icon-icons.com/icons2/2130/PNG/512/pungo_cryptocurrency_logo_icon_131407.png" />
         <div class="container">
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <ul style="list-style: none;">
+                    <li class="nav-li" style="padding: 8%">
+                        <a href="@Url.Action("Index","Home", new { area = "" })" class="hover-feld">Home Page</a>
+                    </li>
+                </ul>
+
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>

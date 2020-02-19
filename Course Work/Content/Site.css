@@ -22,3 +22,38 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.hover-feld:link {
+    text-decoration: none;
+}
+
+.hover-feld:visited {
+    text-decoration: none;
+}
+
+.hover-feld:active {
+    text-decoration: none;
+}
+
+.hover-feld {
+
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-li {
+    padding: 5%;
+    text-align: center;
+    background-color: rgb(31,182,115);
+    height: 50px;
+    width: 150px;
+    float: left;
+}
+.hover-feld:hover {
+    color:white;
+}
+    .nav-li:hover {
+        background-color: rgb(31,170,115);
+    }
+
