@@ -173,6 +173,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OfferController.cs" />
+    <Compile Include="Entity\OfferModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -180,10 +182,19 @@
     <Compile Include="Migrations\202002181651144_FirstForStart.Designer.cs">
       <DependentUpon>202002181651144_FirstForStart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002201631474_offerTbl.cs" />
+    <Compile Include="Migrations\202002201631474_offerTbl.Designer.cs">
+      <DependentUpon>202002201631474_offerTbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002201659580_newOfferField.cs" />
+    <Compile Include="Migrations\202002201659580_newOfferField.Designer.cs">
+      <DependentUpon>202002201659580_newOfferField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OfferViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -249,6 +260,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Offer\Index.cshtml" />
+    <Content Include="Views\Offer\MoreInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -269,6 +282,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002181651144_FirstForStart.resx">
       <DependentUpon>202002181651144_FirstForStart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002201631474_offerTbl.resx">
+      <DependentUpon>202002201631474_offerTbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002201659580_newOfferField.resx">
+      <DependentUpon>202002201659580_newOfferField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

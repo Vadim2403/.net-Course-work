@@ -153,10 +153,12 @@ namespace Course_Work.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                user.PhoneNumber = model.PhoneNumber;
                 ApplicationDbContext _context = new ApplicationDbContext();
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    
                     UserManager.AddToRole(_context.Users.FirstOrDefault(x => x.Email == user.Email).Id, "User");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 

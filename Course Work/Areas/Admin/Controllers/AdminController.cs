@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Course_Work.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         ApplicationDbContext _context = new ApplicationDbContext();
