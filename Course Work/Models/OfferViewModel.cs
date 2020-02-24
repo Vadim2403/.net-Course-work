@@ -34,6 +34,7 @@ namespace Course_Work.Models
         public string IMGUrl { get; set; }
         [Required]
         public string UserID { get; set; }
-
+        [Required]
+        public string category { get; set; }
     }
 }

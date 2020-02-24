@@ -35,6 +35,7 @@ namespace Course_Work.Controllers
                         Title = i.Title,
                         UserID = i.UserID,
                         UserPhone = i.UserPhone,
+                        category = i.category,
                     });
                 }
             }
@@ -58,6 +59,7 @@ namespace Course_Work.Controllers
             selectOffer.Description = temp.Description;
             selectOffer.Email = temp.Email;
             selectOffer.UserPhone = temp.UserPhone;
+            selectOffer.category = temp.category;
 
             return View(selectOffer);
         }
@@ -81,6 +83,7 @@ namespace Course_Work.Controllers
                 Title = model.Title,
                 UserID = User.Identity.GetUserId(),
                 UserPhone = model.UserPhone,
+                category = model.category,
             });
             _context.SaveChanges();
             return RedirectToAction("Index", "Multi", new { id = User.Identity.GetUserId(), area = "" });
@@ -106,6 +109,7 @@ namespace Course_Work.Controllers
                 Title = cOffer.Title,
                 UserID = cOffer.UserID,
                 UserPhone = cOffer.UserPhone,
+                category = cOffer.category,
             };
             return View(Offer);
         }
@@ -120,6 +124,7 @@ namespace Course_Work.Controllers
             offer.UserPhone = model.UserPhone;
             offer.Description = model.Description;
             offer.Email = model.Email;
+            offer.category = model.category;
             _context.SaveChanges();
             return RedirectToAction("Index", "Multi", new { id = User.Identity.GetUserId(), area = "" });
         }

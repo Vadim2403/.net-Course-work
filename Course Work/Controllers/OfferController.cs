@@ -24,7 +24,8 @@ namespace Course_Work.Controllers
                     Title = i.Title,
                     UserPhone = i.UserPhone,
                     UserID = i.UserID,
-                    OfferId = i.Id
+                    OfferId = i.Id,
+                    category = i.category,
                 });
             }
             return View(list);
@@ -43,6 +44,7 @@ namespace Course_Work.Controllers
             selectOffer.Description = temp.Description;
             selectOffer.Email = temp.Email;
             selectOffer.UserPhone = temp.UserPhone;
+            selectOffer.category = temp.category;
 
             return View(selectOffer);
         }

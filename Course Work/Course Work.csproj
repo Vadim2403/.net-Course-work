@@ -191,6 +191,10 @@
     <Compile Include="Migrations\202002201659580_newOfferField.Designer.cs">
       <DependentUpon>202002201659580_newOfferField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002241845344_category-field.cs" />
+    <Compile Include="Migrations\202002241845344_category-field.Designer.cs">
+      <DependentUpon>202002241845344_category-field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -293,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002201659580_newOfferField.resx">
       <DependentUpon>202002201659580_newOfferField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002241845344_category-field.resx">
+      <DependentUpon>202002241845344_category-field.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
