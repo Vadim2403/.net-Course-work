@@ -27,11 +27,7 @@
     @if (User.IsInRole("User"))
     {
         <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
-            <a href="@Url.Action("Index","Manage", new { area = "" })" style="color:white;  font-size:14px;" class="hover-feld">Hello [User] @User.Identity.GetUserName()!</a>
-
-        </li>
-        <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
-            <a href="@Url.Action("","", new { area = "" })" style="color:white;  font-size:14px;" class="hover-feld">Private Cabinet</a>
+            <a href="@Url.Action("Index", "Multi", new { id = User.Identity.GetUserId(), area = ""  })" style="color:white;  font-size:14px;" class="hover-feld">Hello [User] @User.Identity.GetUserName()!</a>
 
         </li>
 

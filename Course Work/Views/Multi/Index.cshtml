@@ -1,0 +1,35 @@
+﻿@using Course_Work.Models;
+@model dynamic
+@{
+    ViewBag.Title = "Index";
+}
+
+@foreach (ApplicationUser i in Model.User)
+{
+    <div>
+        <h5>
+            @i.UserName
+        </h5>
+    </div>
+}
+@Html.ActionLink("Add new Offer", "Create", new { area = "" })
+
+@foreach (OfferViewModel item in Model.Offers)
+{
+    <div class="OfferElement">
+        <div style="float:left; width: 20%">
+            <img style="height: 100px;" src="@Html.DisplayFor(modelItem => item.IMGUrl)" />
+        </div>
+        <div style="float:left; width: 80%;">
+            <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+            <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
+            <h6>Зарплата/місяць : @Html.DisplayFor(modelItem => item.Price) грн.</h6>
+            @Html.ActionLink("More info", "MoreInfo", new { id = item.OfferId })
+        </div>
+        <hr>
+    </div>
+    <a href="@Url.Action("Delete", "Multi", new { id = item.OfferId, area = "" })">Delete</a>
+    @Html.ActionLink("Edit", "Edit", new { id = item.OfferId, area = "" })
+}
+
+

@@ -40,6 +40,8 @@ namespace Course_Work.Controllers
             selectOffer.Price = temp.Price;
             selectOffer.IMGUrl = temp.IMGUrl;
             selectOffer.UserID = temp.UserID;
+            selectOffer.Description = temp.Description;
+            selectOffer.Email = temp.Email;
             selectOffer.UserPhone = temp.UserPhone;
 
             return View(selectOffer);
