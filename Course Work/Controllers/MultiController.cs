@@ -132,6 +132,17 @@ namespace Course_Work.Controllers
                 categoryId = cOffer.categoryId,
                 CategoryName = Find_category(cOffer.categoryId),
         };
+            List<CategoryModel> categories = _context.categories.ToList();
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            foreach (CategoryModel i in categories)
+            {
+                listItems.Add(new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.Category_name,
+                });
+            }
+            Offer.Categories = listItems;
             return View(Offer);
         }
 
