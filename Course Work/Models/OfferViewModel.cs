@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Course_Work.Models
 {
@@ -35,6 +36,10 @@ namespace Course_Work.Models
         [Required]
         public string UserID { get; set; }
         [Required]
-        public string category { get; set; }
+        public List<SelectListItem> Categories { get; set; }
+        [Required]
+        public int categoryId { get; set; }
+        [Required]
+        public string CategoryName { get; set; }
     }
 }

@@ -26,6 +26,7 @@ namespace Course_Work.Models
         {
         }
         public DbSet<OfferModel> offers { get; set; }
+        public DbSet<CategoryModel> categories { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

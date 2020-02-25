@@ -64,27 +64,19 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#test").val("2");
-            });
-        </script>
-        <div div class="col-md-10">
-            <select id="test" class="btn btn-primary dropdown-toggle">
-                <option value="1">Водії</option>
-                <option value="2">Викладачі</option>
-                <option value="3">Продавці</option>
-            </select>
-        </div>
-</div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group " >
+        @Html.Label("Category ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 ">
+            @Html.DropDownListFor(model => model.categoryId,Model.Categories, new { htmlAttributes = new { @class = "list-group-item list-group-item-success form-control" } })
+            @Html.ValidationMessageFor(model => model.IMGUrl, "", new { @class = "text-danger" })
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

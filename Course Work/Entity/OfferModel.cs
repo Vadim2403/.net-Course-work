@@ -26,6 +26,8 @@ namespace Course_Work.Entity
         [Required]
         public string UserID { get; set; }
         [Required]
-        public string category { get; set; }
+        public int categoryId { get; set; }
+        [Required]
+        public string CategoryName { get; set; }
     }
 }

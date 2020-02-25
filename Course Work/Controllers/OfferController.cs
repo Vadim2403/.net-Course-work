@@ -11,6 +11,11 @@ namespace Course_Work.Controllers
     {
         ApplicationDbContext _context = new ApplicationDbContext();
         // GET: Offer
+        public string Find_category(int id)
+        {
+            string category_name = _context.categories.First(x => x.Id == id).Category_name;
+            return category_name;
+        }
         public ActionResult Index()
         {
             List<OfferViewModel> list = new List<OfferViewModel>();
@@ -25,7 +30,8 @@ namespace Course_Work.Controllers
                     UserPhone = i.UserPhone,
                     UserID = i.UserID,
                     OfferId = i.Id,
-                    category = i.category,
+                    categoryId = i.categoryId,
+                    CategoryName = Find_category(i.categoryId),
                 });
             }
             return View(list);
@@ -44,7 +50,8 @@ namespace Course_Work.Controllers
             selectOffer.Description = temp.Description;
             selectOffer.Email = temp.Email;
             selectOffer.UserPhone = temp.UserPhone;
-            selectOffer.category = temp.category;
+            selectOffer.categoryId = temp.categoryId;
+            selectOffer.CategoryName = Find_category(temp.categoryId);
 
             return View(selectOffer);
         }

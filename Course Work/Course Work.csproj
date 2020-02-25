@@ -175,6 +175,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MultiController.cs" />
     <Compile Include="Controllers\OfferController.cs" />
+    <Compile Include="Entity\CategoryModel.cs" />
     <Compile Include="Entity\OfferModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,8 +196,21 @@
     <Compile Include="Migrations\202002241845344_category-field.Designer.cs">
       <DependentUpon>202002241845344_category-field.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002251644012_epicSelect.cs" />
+    <Compile Include="Migrations\202002251644012_epicSelect.Designer.cs">
+      <DependentUpon>202002251644012_epicSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002251649199_CategoryModelAdded.cs" />
+    <Compile Include="Migrations\202002251649199_CategoryModelAdded.Designer.cs">
+      <DependentUpon>202002251649199_CategoryModelAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002251721192_categorynameField.cs" />
+    <Compile Include="Migrations\202002251721192_categorynameField.Designer.cs">
+      <DependentUpon>202002251721192_categorynameField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ContentViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OfferViewModel.cs" />
@@ -274,6 +288,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -300,6 +315,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002241845344_category-field.resx">
       <DependentUpon>202002241845344_category-field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002251644012_epicSelect.resx">
+      <DependentUpon>202002251644012_epicSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002251649199_CategoryModelAdded.resx">
+      <DependentUpon>202002251649199_CategoryModelAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002251721192_categorynameField.resx">
+      <DependentUpon>202002251721192_categorynameField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

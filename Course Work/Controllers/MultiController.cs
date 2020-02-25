@@ -1,4 +1,5 @@
-﻿using Course_Work.Models;
+﻿using Course_Work.Entity;
+using Course_Work.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,11 @@ namespace Course_Work.Controllers
     {
         ApplicationDbContext _context = new ApplicationDbContext();
         // GET: Multi
+        public string Find_category(int id)
+        {
+            string category_name = _context.categories.First(x => x.Id == id).Category_name;
+            return category_name;
+        }
         public ActionResult Index(string id)
         {
 
@@ -35,7 +41,8 @@ namespace Course_Work.Controllers
                         Title = i.Title,
                         UserID = i.UserID,
                         UserPhone = i.UserPhone,
-                        category = i.category,
+                        categoryId = i.categoryId,
+                        CategoryName = Find_category(i.categoryId),
                     });
                 }
             }
@@ -59,7 +66,8 @@ namespace Course_Work.Controllers
             selectOffer.Description = temp.Description;
             selectOffer.Email = temp.Email;
             selectOffer.UserPhone = temp.UserPhone;
-            selectOffer.category = temp.category;
+            selectOffer.categoryId = temp.categoryId;
+            selectOffer.CategoryName = Find_category(temp.categoryId);
 
             return View(selectOffer);
         }
@@ -67,8 +75,19 @@ namespace Course_Work.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-
-            return View();
+            List<CategoryModel> categories = _context.categories.ToList();
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            foreach(CategoryModel i in categories)
+            {
+                listItems.Add(new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.Category_name,
+                });
+            }
+            OfferViewModel model = new OfferViewModel();
+            model.Categories = listItems;
+            return View(model);
         }
 
         [HttpPost]
@@ -83,7 +102,8 @@ namespace Course_Work.Controllers
                 Title = model.Title,
                 UserID = User.Identity.GetUserId(),
                 UserPhone = model.UserPhone,
-                category = model.category,
+                categoryId = model.categoryId,
+                CategoryName = Find_category(model.categoryId),
             });
             _context.SaveChanges();
             return RedirectToAction("Index", "Multi", new { id = User.Identity.GetUserId(), area = "" });
@@ -109,10 +129,12 @@ namespace Course_Work.Controllers
                 Title = cOffer.Title,
                 UserID = cOffer.UserID,
                 UserPhone = cOffer.UserPhone,
-                category = cOffer.category,
-            };
+                categoryId = cOffer.categoryId,
+                CategoryName = Find_category(cOffer.categoryId),
+        };
             return View(Offer);
         }
+
         [HttpPost]
         public ActionResult Edit(OfferViewModel model)
         {
@@ -124,7 +146,8 @@ namespace Course_Work.Controllers
             offer.UserPhone = model.UserPhone;
             offer.Description = model.Description;
             offer.Email = model.Email;
-            offer.category = model.category;
+            offer.categoryId = model.categoryId;
+            offer.CategoryName = Find_category(offer.categoryId);
             _context.SaveChanges();
             return RedirectToAction("Index", "Multi", new { id = User.Identity.GetUserId(), area = "" });
         }
