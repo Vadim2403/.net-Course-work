@@ -32,6 +32,7 @@ namespace Course_Work.Controllers
                     OfferId = i.Id,
                     categoryId = i.categoryId,
                     CategoryName = Find_category(i.categoryId),
+                    FilePath = Url.Content(Constants.OfferImagePath) + i.ImageName,
                 });
             }
             return View(list);

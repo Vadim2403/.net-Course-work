@@ -32,5 +32,26 @@ namespace Course_Work.Areas.Admin.Controllers
             }
             return View(list);
         }
+        public ActionResult Delete(string id)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            if(user != null)
+            {
+              
+
+                var useroffers = _context.offers.Where(t => t.UserID == id).ToList();
+
+                foreach (var item in useroffers)
+                {
+                    _context.offers.Remove(item);
+                }
+
+
+                _context.Users.Remove(user);
+                _context.SaveChanges();
+   
+            }
+            return RedirectToAction("Index", "Admin", new { area = "Admin" });
+        }
     }
 }
