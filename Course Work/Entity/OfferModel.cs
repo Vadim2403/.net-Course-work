@@ -29,5 +29,7 @@ namespace Course_Work.Entity
         public int categoryId { get; set; }
         [Required]
         public string CategoryName { get; set; }
+        [Required]
+        public string ImageName { get; set; }
     }
 }

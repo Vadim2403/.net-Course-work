@@ -3,6 +3,8 @@ using Course_Work.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Dynamic;
 using System.Linq;
 using System.Web;
@@ -43,7 +45,8 @@ namespace Course_Work.Controllers
                         UserPhone = i.UserPhone,
                         categoryId = i.categoryId,
                         CategoryName = Find_category(i.categoryId),
-                    });
+                        FilePath = Url.Content(Constants.OfferImagePath) + i.ImageName,
+                });
                 }
             }
             dynamic mymodel = new ExpandoObject();
@@ -93,7 +96,22 @@ namespace Course_Work.Controllers
         [HttpPost]
         public ActionResult Create(OfferViewModel model)
         {
-            _context.offers.Add(new Entity.OfferModel
+            string link = string.Empty;
+            string filename = Guid.NewGuid().ToString() + ".jpg";
+            string image = Server.MapPath(Constants.OfferImagePath) +
+                filename;
+            using (Bitmap bmp = new Bitmap(model.SomeFile.InputStream))
+            {
+                var saveImage = ImageWorker.CreateImage(bmp, 450, 450);
+                if (saveImage != null)
+                {
+                    saveImage.Save(image, ImageFormat.Jpeg);
+                    link = Url.Content(Constants.OfferImagePath) +
+                        filename;
+                    
+                }
+            }
+                    _context.offers.Add(new Entity.OfferModel
             {
                 Description = model.Description,
                 Email = model.Email,
@@ -104,6 +122,7 @@ namespace Course_Work.Controllers
                 UserPhone = model.UserPhone,
                 categoryId = model.categoryId,
                 CategoryName = Find_category(model.categoryId),
+                ImageName = filename,
             });
             _context.SaveChanges();
             return RedirectToAction("Index", "Multi", new { id = User.Identity.GetUserId(), area = "" });
@@ -131,7 +150,8 @@ namespace Course_Work.Controllers
                 UserPhone = cOffer.UserPhone,
                 categoryId = cOffer.categoryId,
                 CategoryName = Find_category(cOffer.categoryId),
-        };
+                FilePath = Url.Content(Constants.OfferImagePath) + cOffer.ImageName,
+            };
             List<CategoryModel> categories = _context.categories.ToList();
             List<SelectListItem> listItems = new List<SelectListItem>();
             foreach (CategoryModel i in categories)
@@ -149,6 +169,25 @@ namespace Course_Work.Controllers
         [HttpPost]
         public ActionResult Edit(OfferViewModel model)
         {
+            string filename = string.Empty;
+            if (model.SomeFile != null)
+            {
+                string link = string.Empty;
+                filename = Guid.NewGuid().ToString() + ".jpg";
+                string image = Server.MapPath(Constants.OfferImagePath) +
+                    filename;
+                using (Bitmap bmp = new Bitmap(model.SomeFile.InputStream))
+                {
+                    var saveImage = ImageWorker.CreateImage(bmp, 450, 450);
+                    if (saveImage != null)
+                    {
+                        saveImage.Save(image, ImageFormat.Jpeg);
+                        link = Url.Content(Constants.OfferImagePath) +
+                            filename;
+
+                    }
+                }
+            }
             var offer = _context.offers.FirstOrDefault(x => x.Id == model.OfferId);
             offer.IMGUrl = model.IMGUrl;
             offer.Price = model.Price;
@@ -159,6 +198,10 @@ namespace Course_Work.Controllers
             offer.Email = model.Email;
             offer.categoryId = model.categoryId;
             offer.CategoryName = Find_category(offer.categoryId);
+            if (model.SomeFile != null)
+            {
+                offer.ImageName = filename;
+            }
             _context.SaveChanges();
             return RedirectToAction("Index", "Multi", new { id = User.Identity.GetUserId(), area = "" });
         }

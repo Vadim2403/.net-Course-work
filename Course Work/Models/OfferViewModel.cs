@@ -41,5 +41,8 @@ namespace Course_Work.Models
         public int categoryId { get; set; }
         [Required]
         public string CategoryName { get; set; }
+        [Required]
+        public HttpPostedFileBase SomeFile { get; set; }
+        public string FilePath { get; set; }
     }
 }

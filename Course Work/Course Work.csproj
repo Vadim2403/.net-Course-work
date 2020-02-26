@@ -180,6 +180,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ImageWorker.cs" />
     <Compile Include="Migrations\202002181651144_FirstForStart.cs" />
     <Compile Include="Migrations\202002181651144_FirstForStart.Designer.cs">
       <DependentUpon>202002181651144_FirstForStart.cs</DependentUpon>
@@ -207,6 +208,14 @@
     <Compile Include="Migrations\202002251721192_categorynameField.cs" />
     <Compile Include="Migrations\202002251721192_categorynameField.Designer.cs">
       <DependentUpon>202002251721192_categorynameField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002261607220_split.cs" />
+    <Compile Include="Migrations\202002261607220_split.Designer.cs">
+      <DependentUpon>202002261607220_split.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002261640093_img.cs" />
+    <Compile Include="Migrations\202002261640093_img.Designer.cs">
+      <DependentUpon>202002261640093_img.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -289,6 +298,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -324,6 +334,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002251721192_categorynameField.resx">
       <DependentUpon>202002251721192_categorynameField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002261607220_split.resx">
+      <DependentUpon>202002261607220_split.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002261640093_img.resx">
+      <DependentUpon>202002261640093_img.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
