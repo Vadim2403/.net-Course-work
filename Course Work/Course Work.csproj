@@ -175,8 +175,10 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MultiController.cs" />
     <Compile Include="Controllers\OfferController.cs" />
+    <Compile Include="Controllers\ResumeController.cs" />
     <Compile Include="Entity\CategoryModel.cs" />
     <Compile Include="Entity\OfferModel.cs" />
+    <Compile Include="Entity\ResumeModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,12 +219,25 @@
     <Compile Include="Migrations\202002261640093_img.Designer.cs">
       <DependentUpon>202002261640093_img.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002271645474_tblResumes.cs" />
+    <Compile Include="Migrations\202002271645474_tblResumes.Designer.cs">
+      <DependentUpon>202002271645474_tblResumes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002271657553_tblResumes_Update.cs" />
+    <Compile Include="Migrations\202002271657553_tblResumes_Update.Designer.cs">
+      <DependentUpon>202002271657553_tblResumes_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002271704435_tblResumes_Update2.cs" />
+    <Compile Include="Migrations\202002271704435_tblResumes_Update2.Designer.cs">
+      <DependentUpon>202002271704435_tblResumes_Update2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContentViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OfferViewModel.cs" />
+    <Compile Include="Models\ResumeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -294,6 +309,7 @@
     <Content Include="Views\Multi\MoreInfo.cshtml" />
     <Content Include="Views\Multi\Create.cshtml" />
     <Content Include="Views\Multi\Edit.cshtml" />
+    <Content Include="Views\Resume\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -340,6 +356,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002261640093_img.resx">
       <DependentUpon>202002261640093_img.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002271645474_tblResumes.resx">
+      <DependentUpon>202002271645474_tblResumes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002271657553_tblResumes_Update.resx">
+      <DependentUpon>202002271657553_tblResumes_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002271704435_tblResumes_Update2.resx">
+      <DependentUpon>202002271704435_tblResumes_Update2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
