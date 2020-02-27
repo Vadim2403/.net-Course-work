@@ -10,10 +10,26 @@ namespace Course_Work.Controllers
 {
     public class ResumeController : Controller
     {
+        ApplicationDbContext _context = new ApplicationDbContext();
         // GET: Resume
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            var list = _context.resumes.Where(x => x.Offer_Id == id);
+            List<ResumeViewModel> listResumes = new List<ResumeViewModel>();
+            foreach(var i in list)
+            {
+                listResumes.Add(new ResumeViewModel()
+                {
+                    User_Surname = i.User_Surname,
+                    Additionals = i.Additionals,
+                    Offer_Id = i.Offer_Id,
+                    PhoneNumber = i.PhoneNumber,
+                    User_Email = i.User_Email,
+                    User_Id = i.User_Id,
+                    User_Name = i.User_Name,
+                });
+            }
+            return View(listResumes);
         }
         [HttpGet]
         public ActionResult Create(int id)
@@ -28,7 +44,7 @@ namespace Course_Work.Controllers
         [HttpPost]
         public ActionResult Create(ResumeViewModel model)
         {
-            ApplicationDbContext _context = new ApplicationDbContext();
+
             _context.resumes.Add(new Entity.ResumeModel
             {
                 User_Surname = model.User_Surname,

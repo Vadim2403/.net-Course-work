@@ -310,6 +310,7 @@
     <Content Include="Views\Multi\Create.cshtml" />
     <Content Include="Views\Multi\Edit.cshtml" />
     <Content Include="Views\Resume\Create.cshtml" />
+    <Content Include="Views\Resume\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
