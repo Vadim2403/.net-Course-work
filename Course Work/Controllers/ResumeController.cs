@@ -1,4 +1,5 @@
-﻿using Course_Work.Models;
+﻿using Course_Work.Entity;
+using Course_Work.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -34,12 +35,25 @@ namespace Course_Work.Controllers
         [HttpGet]
         public ActionResult Create(int id)
         {
-            ResumeViewModel resume = new ResumeViewModel()
+            string uid = User.Identity.GetUserId();
+            bool flag = false;
+            List<ResumeModel> list = _context.resumes.Where(x => x.User_Id == uid)
+                                       .Where(x => x.Offer_Id == id).ToList();
+            if(list.Count > 0)
             {
-               User_Id = User.Identity.GetUserId(),
-               Offer_Id = id,
-            };
-            return View(resume);
+                flag = true;
+            }
+    
+            if (flag == false)
+            {
+                ResumeViewModel resume = new ResumeViewModel()
+                {
+                    User_Id = User.Identity.GetUserId(),
+                    Offer_Id = id,
+                };
+                return View(resume);
+            }
+            else return RedirectToAction("Index","Home");
         }
         [HttpPost]
         public ActionResult Create(ResumeViewModel model)

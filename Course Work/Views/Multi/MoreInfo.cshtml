@@ -1,5 +1,5 @@
-﻿@model Course_Work.Models.OfferViewModel
-
+﻿@using Course_Work.Models;
+@model dynamic
 @{
     ViewBag.Title = "MoreInfo";
 }
@@ -9,77 +9,94 @@
 <div>
     <h4>OfferViewModel</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.OfferId)
-        </dt>
+    @foreach (OfferViewModel i in Model.Offer)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => i.OfferId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OfferId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => i.OfferId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => i.Title)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => i.Title)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => i.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => i.Description)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserPhone)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => i.UserPhone)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserPhone)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => i.UserPhone)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => i.Price)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => i.Price)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => i.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => i.Email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IMGUrl)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => i.IMGUrl)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IMGUrl)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => i.IMGUrl)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserID)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => i.UserID)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => i.UserID)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => i.CategoryName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-    </dl>
-    @Html.ActionLink("Резюме", "Index", "Resume", new { id = Model.OfferId });
+            <dd>
+                @Html.DisplayFor(model => i.CategoryName)
+            </dd>
+        </dl>
+        @*@Html.ActionLink("Резюме", "Index", "Resume", new { id = i.OfferId });*@
+    }
+    @foreach (ResumeViewModel item in Model.Resumes)
+    {
+        <div>
+            <div style="float:left; width: 80%;">
+                <h6>@Html.DisplayFor(modelItem => item.User_Name)</h6>
+                <h6>@Html.DisplayFor(modelItem => item.User_Surname)</h6>
+                <h6>@Html.DisplayFor(modelItem => item.User_Email)</h6>
+                <h6>@Html.DisplayFor(modelItem => item.PhoneNumber)</h6>
+                <h6>@Html.DisplayFor(modelItem => item.Additionals)</h6>
+            </div>
+            <hr>
+        </div>
+    }
+
 </div>

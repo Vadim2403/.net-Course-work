@@ -49,6 +49,7 @@ namespace Course_Work.Controllers
                 });
                 }
             }
+          
             dynamic mymodel = new ExpandoObject();
             mymodel.User = UserCurrent;
             mymodel.Offers = listOffers;
@@ -59,6 +60,7 @@ namespace Course_Work.Controllers
         [Authorize]
         public ActionResult MoreInfo(int Id)
         {
+
             OfferViewModel selectOffer = new OfferViewModel();
             var temp = _context.offers.FirstOrDefault(t => t.Id == Id);
             selectOffer.OfferId = temp.Id;
@@ -72,7 +74,31 @@ namespace Course_Work.Controllers
             selectOffer.categoryId = temp.categoryId;
             selectOffer.CategoryName = Find_category(temp.categoryId);
 
-            return View(selectOffer);
+            List<OfferViewModel> OfferCurrent = new List<OfferViewModel>();
+            OfferCurrent.Add(selectOffer);
+
+            List<ResumeViewModel> listResumes = new List<ResumeViewModel>();
+            foreach (var i in _context.resumes.ToList())
+            {
+                if (selectOffer.OfferId == i.Offer_Id)
+                {
+                    listResumes.Add(new ResumeViewModel
+                    {
+                        User_Surname = i.User_Surname,
+                        Additionals = i.Additionals,
+                        Offer_Id = i.Offer_Id,
+                        PhoneNumber = i.PhoneNumber,
+                        Resume_ID = i.Resume_ID,
+                        User_Email = i.User_Email,
+                        User_Id = i.User_Id,
+                        User_Name = i.User_Name,
+                    });
+                }
+            }
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Offer = OfferCurrent;
+            mymodel.Resumes = listResumes;
+            return View(mymodel);
         }
 
         [HttpGet]

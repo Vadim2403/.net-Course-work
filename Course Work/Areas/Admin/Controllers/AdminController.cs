@@ -41,12 +41,23 @@ namespace Course_Work.Areas.Admin.Controllers
 
                 var useroffers = _context.offers.Where(t => t.UserID == id).ToList();
 
+
                 foreach (var item in useroffers)
                 {
+                    var AllResumes = _context.resumes.Where(x => x.Offer_Id == item.Id);
+                    foreach(var item2 in AllResumes)
+                    {
+                        _context.resumes.Remove(item2);
+                    }
                     _context.offers.Remove(item);
                 }
+                var allUsersResumes = _context.resumes.Where(x => x.User_Id == id).ToList();
 
 
+                foreach (var item in allUsersResumes)
+                {
+                    _context.resumes.Remove(item);
+                }
                 _context.Users.Remove(user);
                 _context.SaveChanges();
    
