@@ -4,6 +4,8 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,7 +19,7 @@ namespace Course_Work.Controllers
         {
             var list = _context.resumes.Where(x => x.Offer_Id == id);
             List<ResumeViewModel> listResumes = new List<ResumeViewModel>();
-            foreach(var i in list)
+            foreach (var i in list)
             {
                 listResumes.Add(new ResumeViewModel()
                 {
@@ -39,11 +41,11 @@ namespace Course_Work.Controllers
             bool flag = false;
             List<ResumeModel> list = _context.resumes.Where(x => x.User_Id == uid)
                                        .Where(x => x.Offer_Id == id).ToList();
-            if(list.Count > 0)
+            if (list.Count > 0)
             {
                 flag = true;
             }
-    
+
             if (flag == false)
             {
                 ResumeViewModel resume = new ResumeViewModel()
@@ -53,7 +55,7 @@ namespace Course_Work.Controllers
                 };
                 return View(resume);
             }
-            else return RedirectToAction("Index","Home");
+            else return RedirectToAction("Index", "Home");
         }
         [HttpPost]
         public ActionResult Create(ResumeViewModel model)
@@ -71,6 +73,32 @@ namespace Course_Work.Controllers
             });
             _context.SaveChanges();
             return View();
+        }
+        public ActionResult Email(int id)
+        {
+            ResumeModel resume = _context.resumes.FirstOrDefault(x => x.Resume_ID == id);
+            OfferModel currentOffer = _context.offers.FirstOrDefault(x => x.Id == resume.Offer_Id);
+            ApplicationUser currentUser = _context.Users.FirstOrDefault(x => x.Id == currentOffer.UserID);
+            //try
+            //{
+            MailMessage message = new MailMessage();
+            SmtpClient smtp = new SmtpClient();
+            message.From = new MailAddress("oasis.workua@gmail.com");
+            message.To.Add(new MailAddress(resume.User_Email));
+            message.Subject = "ANSWER FROM OASIS";
+            var htmlString = $"<div style=\"background:greenyellow\"><h1 style=\"color:white\">Ваше резюме на роботу: \"{currentOffer.Title}\" було розглянуто, будь ласкавий звязатись із роботодавцем за контактами:</h1>    <h4 style=\"color:white\">Email: {currentUser.Email}</h4>    <h4 style=\"color:white\">Phonenumber: {currentUser.PhoneNumber}</h4></div>";
+                message.IsBodyHtml = true;
+            message.Body = htmlString;
+            smtp.Port = 587;
+            smtp.Host = "smtp.gmail.com";
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("oasis.workua@gmail.com", "Qwerty-1");
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Send(message);
+            //}
+            //catch (Exception) { return RedirectToAction("Index", "Offer"); }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
