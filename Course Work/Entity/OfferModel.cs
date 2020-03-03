@@ -31,5 +31,9 @@ namespace Course_Work.Entity
         public string CategoryName { get; set; }
         [Required]
         public string ImageName { get; set; }
+        [Required]
+        public int cityId { get; set; }
+        [Required]
+        public string cityName { get; set; }
     }
 }

@@ -21,6 +21,11 @@ namespace Course_Work.Controllers
             string category_name = _context.categories.First(x => x.Id == id).Category_name;
             return category_name;
         }
+        public string Find_city(int id)
+        {
+            string city_name = _context.cities.First(x => x.Id == id).City_name;
+            return city_name;
+        }
         public ActionResult Index(string id)
         {
 
@@ -107,8 +112,10 @@ namespace Course_Work.Controllers
         public ActionResult Create()
         {
             List<CategoryModel> categories = _context.categories.ToList();
+            List<CityModel> cities = _context.cities.ToList();
             List<SelectListItem> listItems = new List<SelectListItem>();
-            foreach(CategoryModel i in categories)
+            List<SelectListItem> listItems2 = new List<SelectListItem>();
+            foreach (CategoryModel i in categories)
             {
                 listItems.Add(new SelectListItem
                 {
@@ -116,8 +123,17 @@ namespace Course_Work.Controllers
                     Text = i.Category_name,
                 });
             }
+            foreach (CityModel i in cities)
+            {
+                listItems2.Add(new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.City_name,
+                });
+            }
             OfferViewModel model = new OfferViewModel();
             model.Categories = listItems;
+            model.Cities = listItems2;
             return View(model);
         }
 
@@ -151,6 +167,8 @@ namespace Course_Work.Controllers
                 categoryId = model.categoryId,
                 CategoryName = Find_category(model.categoryId),
                 ImageName = filename,
+                cityId = model.cityId,
+                cityName = Find_city(model.cityId),
             });
             _context.SaveChanges();
             return RedirectToAction("Index", "Multi", new { id = User.Identity.GetUserId(), area = "" });

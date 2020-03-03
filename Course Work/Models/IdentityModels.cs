@@ -28,6 +28,7 @@ namespace Course_Work.Models
         public DbSet<OfferModel> offers { get; set; }
         public DbSet<CategoryModel> categories { get; set; }
         public DbSet<ResumeModel> resumes { get; set; }
+        public DbSet<CityModel> cities { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

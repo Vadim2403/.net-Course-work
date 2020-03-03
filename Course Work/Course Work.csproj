@@ -177,6 +177,7 @@
     <Compile Include="Controllers\OfferController.cs" />
     <Compile Include="Controllers\ResumeController.cs" />
     <Compile Include="Entity\CategoryModel.cs" />
+    <Compile Include="Entity\CityModel.cs" />
     <Compile Include="Entity\OfferModel.cs" />
     <Compile Include="Entity\ResumeModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,6 +235,10 @@
     <Compile Include="Migrations\202003031635402_tblResume_Update.cs" />
     <Compile Include="Migrations\202003031635402_tblResume_Update.Designer.cs">
       <DependentUpon>202003031635402_tblResume_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003031830279_citiesw.cs" />
+    <Compile Include="Migrations\202003031830279_citiesw.Designer.cs">
+      <DependentUpon>202003031830279_citiesw.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -373,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003031635402_tblResume_Update.resx">
       <DependentUpon>202003031635402_tblResume_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003031830279_citiesw.resx">
+      <DependentUpon>202003031830279_citiesw.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

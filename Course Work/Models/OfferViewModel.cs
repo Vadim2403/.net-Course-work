@@ -44,5 +44,11 @@ namespace Course_Work.Models
         [Required]
         public HttpPostedFileBase SomeFile { get; set; }
         public string FilePath { get; set; }
+        public List<SelectListItem> Cities { get; set; }
+        [Required]
+        public int cityId { get; set; }
+        [Required]
+        public string cityName { get; set; }
+
     }
 }
