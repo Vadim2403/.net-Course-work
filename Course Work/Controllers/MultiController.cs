@@ -92,6 +92,8 @@ namespace Course_Work.Controllers
                         User_Email = i.User_Email,
                         User_Id = i.User_Id,
                         User_Name = i.User_Name,
+                        IsEmailed = i.IsEmailed,
+                        IsSelected = i.IsSelected,
                     });
                 }
             }

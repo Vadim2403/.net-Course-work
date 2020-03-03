@@ -231,6 +231,10 @@
     <Compile Include="Migrations\202002271704435_tblResumes_Update2.Designer.cs">
       <DependentUpon>202002271704435_tblResumes_Update2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003031635402_tblResume_Update.cs" />
+    <Compile Include="Migrations\202003031635402_tblResume_Update.Designer.cs">
+      <DependentUpon>202003031635402_tblResume_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContentViewModel.cs" />
@@ -366,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002271704435_tblResumes_Update2.resx">
       <DependentUpon>202002271704435_tblResumes_Update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003031635402_tblResume_Update.resx">
+      <DependentUpon>202003031635402_tblResume_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

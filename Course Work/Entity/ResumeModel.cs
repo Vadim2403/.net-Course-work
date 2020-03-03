@@ -25,5 +25,9 @@ namespace Course_Work.Entity
         public int Offer_Id { get; set; }
         [Required]
         public string User_Id { get; set; }
+        [Required]
+        public bool IsEmailed { get; set; }
+        [Required]
+        public bool IsSelected { get; set; }
     }
 }

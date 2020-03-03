@@ -70,6 +70,8 @@ namespace Course_Work.Controllers
                 User_Email = model.User_Email,
                 User_Id = model.User_Id,
                 User_Name = model.User_Name,
+                IsEmailed = false,
+                IsSelected = false,
             });
             _context.SaveChanges();
             return View();
@@ -79,9 +81,9 @@ namespace Course_Work.Controllers
             ResumeModel resume = _context.resumes.FirstOrDefault(x => x.Resume_ID == id);
             OfferModel currentOffer = _context.offers.FirstOrDefault(x => x.Id == resume.Offer_Id);
             ApplicationUser currentUser = _context.Users.FirstOrDefault(x => x.Id == currentOffer.UserID);
-            //try
-            //{
-            MailMessage message = new MailMessage();
+            try
+            {
+                MailMessage message = new MailMessage();
             SmtpClient smtp = new SmtpClient();
             message.From = new MailAddress("oasis.workua@gmail.com");
             message.To.Add(new MailAddress(resume.User_Email));
@@ -96,9 +98,23 @@ namespace Course_Work.Controllers
             smtp.Credentials = new NetworkCredential("oasis.workua@gmail.com", "Qwerty-1");
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(message);
-            //}
-            //catch (Exception) { return RedirectToAction("Index", "Offer"); }
+            }
+            catch (Exception) { return RedirectToAction("Index", "Offer"); }
             return RedirectToAction("Index", "Home");
+        }
+        public ActionResult toSelect(int id,int offer_id)
+        {
+            ResumeModel resume = _context.resumes.FirstOrDefault(x => x.Resume_ID == id);
+            resume.IsSelected = true;
+            _context.SaveChanges();
+            return RedirectToAction("MoreInfo","Multi",new { id = offer_id });
+        }
+        public ActionResult unSelect(int id, int offer_id)
+        {
+            ResumeModel resume = _context.resumes.FirstOrDefault(x => x.Resume_ID == id);
+            resume.IsSelected = false;
+            _context.SaveChanges();
+            return RedirectToAction("MoreInfo", "Multi", new { id = offer_id });
         }
     }
 }

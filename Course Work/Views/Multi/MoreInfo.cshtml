@@ -5,12 +5,15 @@
 }
 
 <h2>MoreInfo</h2>
-
+@{
+    OfferViewModel off = null;
+}
 <div>
     <h4>OfferViewModel</h4>
     <hr />
     @foreach (OfferViewModel i in Model.Offer)
     {
+        off = i;
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => i.OfferId)
@@ -85,9 +88,32 @@
         </dl>
         @*@Html.ActionLink("Резюме", "Index", "Resume", new { id = i.OfferId });*@
     }
+    @{
+        var flag = false;
+        foreach (ResumeViewModel item in Model.Resumes)
+        {
+            if (item.IsSelected == true)
+            {
+                flag = true;
+            }
+        }
+    }
     @foreach (ResumeViewModel item in Model.Resumes)
     {
         <div>
+            @if (item.IsEmailed == true)
+            {
+                <h5>EMAILED</h5>
+            }
+            else
+            { <a href="@Url.Action("Email","Resume",new { @id = item.Resume_ID })">send Email</a>}
+            @if (item.IsSelected == true)
+            {
+                <h5>SELECTED</h5>
+                <a href="@Url.Action("unSelect","Resume",new { @id = item.Resume_ID, @offer_id = off.OfferId })">UNSelect user</a>
+            }
+            else if (flag != true)
+            { <a href="@Url.Action("toSelect","Resume",new { @id = item.Resume_ID, @offer_id = off.OfferId })">Select user</a>}
             <div style="float:left; width: 80%;">
                 <h6>@Html.DisplayFor(modelItem => item.User_Name)</h6>
                 <h6>@Html.DisplayFor(modelItem => item.User_Surname)</h6>
@@ -96,7 +122,7 @@
                 <h6>@Html.DisplayFor(modelItem => item.Additionals)</h6>
             </div>
             <hr>
-            <a href="@Url.Action("Email","Resume",new { @id = item.Resume_ID })">sdasdasd</a>
+
         </div>
     }
 
