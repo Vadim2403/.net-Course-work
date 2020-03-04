@@ -51,6 +51,8 @@ namespace Course_Work.Controllers
                         categoryId = i.categoryId,
                         CategoryName = Find_category(i.categoryId),
                         FilePath = Url.Content(Constants.OfferImagePath) + i.ImageName,
+                        cityId = i.cityId,
+                        cityName = Find_city(i.cityId),
                 });
                 }
             }
@@ -78,6 +80,9 @@ namespace Course_Work.Controllers
             selectOffer.UserPhone = temp.UserPhone;
             selectOffer.categoryId = temp.categoryId;
             selectOffer.CategoryName = Find_category(temp.categoryId);
+            selectOffer.cityId = temp.cityId;
+            selectOffer.cityName = Find_city(temp.cityId);
+            selectOffer.FilePath = temp.ImageName;
 
             List<OfferViewModel> OfferCurrent = new List<OfferViewModel>();
             OfferCurrent.Add(selectOffer);
@@ -140,38 +145,80 @@ namespace Course_Work.Controllers
         [HttpPost]
         public ActionResult Create(OfferViewModel model)
         {
-            string link = string.Empty;
-            string filename = Guid.NewGuid().ToString() + ".jpg";
-            string image = Server.MapPath(Constants.OfferImagePath) +
-                filename;
-            using (Bitmap bmp = new Bitmap(model.SomeFile.InputStream))
+
+
+            if (ModelState.IsValid)
             {
-                var saveImage = ImageWorker.CreateImage(bmp, 450, 450);
-                if (saveImage != null)
+                string link = string.Empty;
+                string filename = Guid.NewGuid().ToString() + ".jpg";
+                string image = Server.MapPath(Constants.OfferImagePath) +
+                    filename;
+                if (model.SomeFile != null)
                 {
-                    saveImage.Save(image, ImageFormat.Jpeg);
-                    link = Url.Content(Constants.OfferImagePath) +
-                        filename;
-                    
+                    using (Bitmap bmp = new Bitmap(model.SomeFile.InputStream))
+                    {
+                        var saveImage = ImageWorker.CreateImage(bmp, 450, 450);
+                        if (saveImage != null)
+                        {
+                            saveImage.Save(image, ImageFormat.Jpeg);
+                            link = Url.Content(Constants.OfferImagePath) +
+                                filename;
+
+                        }
+                    }
                 }
+                else
+                {
+                    link = Url.Content(Constants.OfferImagePath) + "418099f8-036d-4dc2-be9a-3eef1c54088b.jpg";
+                    filename = "418099f8-036d-4dc2-be9a-3eef1c54088b.jpg";
+                }
+
+
+                _context.offers.Add(new Entity.OfferModel
+                {
+                    Description = model.Description,
+                    Email = model.Email,
+                    IMGUrl = model.IMGUrl,
+                    Price = model.Price,
+                    Title = model.Title,
+                    UserID = User.Identity.GetUserId(),
+                    UserPhone = model.UserPhone,
+                    categoryId = model.categoryId,
+                    CategoryName = Find_category(model.categoryId),
+                    ImageName = filename,
+                    cityId = model.cityId,
+                    cityName = Find_city(model.cityId),
+                });
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Multi", new { id = User.Identity.GetUserId(), area = "" });
+
             }
-                    _context.offers.Add(new Entity.OfferModel
+            else
             {
-                Description = model.Description,
-                Email = model.Email,
-                IMGUrl = model.IMGUrl,
-                Price = model.Price,
-                Title = model.Title,
-                UserID = User.Identity.GetUserId(),
-                UserPhone = model.UserPhone,
-                categoryId = model.categoryId,
-                CategoryName = Find_category(model.categoryId),
-                ImageName = filename,
-                cityId = model.cityId,
-                cityName = Find_city(model.cityId),
-            });
-            _context.SaveChanges();
-            return RedirectToAction("Index", "Multi", new { id = User.Identity.GetUserId(), area = "" });
+                List<CategoryModel> categories = _context.categories.ToList();
+                List<CityModel> cities = _context.cities.ToList();
+                List<SelectListItem> listItems = new List<SelectListItem>();
+                List<SelectListItem> listItems2 = new List<SelectListItem>();
+                foreach (CategoryModel i in categories)
+                {
+                    listItems.Add(new SelectListItem
+                    {
+                        Value = i.Id.ToString(),
+                        Text = i.Category_name,
+                    });
+                }
+                foreach (CityModel i in cities)
+                {
+                    listItems2.Add(new SelectListItem
+                    {
+                        Value = i.Id.ToString(),
+                        Text = i.City_name,
+                    });
+                }
+                model.Categories = listItems;
+                model.Cities = listItems2;
+                return View(model);
+            }
         }
 
         public ActionResult Delete(int id)
@@ -196,10 +243,14 @@ namespace Course_Work.Controllers
                 UserPhone = cOffer.UserPhone,
                 categoryId = cOffer.categoryId,
                 CategoryName = Find_category(cOffer.categoryId),
+                cityId = cOffer.cityId,
+                cityName = Find_city(cOffer.cityId),
                 FilePath = Url.Content(Constants.OfferImagePath) + cOffer.ImageName,
             };
             List<CategoryModel> categories = _context.categories.ToList();
+            List<CityModel> cities = _context.cities.ToList();
             List<SelectListItem> listItems = new List<SelectListItem>();
+            List<SelectListItem> listItems2 = new List<SelectListItem>();
             foreach (CategoryModel i in categories)
             {
                 listItems.Add(new SelectListItem
@@ -208,8 +259,29 @@ namespace Course_Work.Controllers
                     Text = i.Category_name,
                 });
             }
+            foreach (CityModel i in cities)
+            {
+                listItems2.Add(new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.City_name,
+                });
+            }
             Offer.Categories = listItems;
+            Offer.Cities = listItems2;
             return View(Offer);
+            //List<CategoryModel> categories = _context.categories.ToList();
+            //List<SelectListItem> listItems = new List<SelectListItem>();
+            //foreach (CategoryModel i in categories)
+            //{
+            //    listItems.Add(new SelectListItem
+            //    {
+            //        Value = i.Id.ToString(),
+            //        Text = i.Category_name,
+            //    });
+            //}
+            //Offer.Categories = listItems;
+            //return View(Offer);
         }
 
         [HttpPost]
@@ -244,6 +316,8 @@ namespace Course_Work.Controllers
             offer.Email = model.Email;
             offer.categoryId = model.categoryId;
             offer.CategoryName = Find_category(offer.categoryId);
+            offer.cityId = model.cityId;
+            offer.cityName = Find_city(offer.cityId);
             if (model.SomeFile != null)
             {
                 offer.ImageName = filename;

@@ -30,7 +30,7 @@ namespace Course_Work
          
             bundles.Add(new StyleBundle("~/Content/css").Include(
           "~/Content/bootstrap.css",
-          "~/Content/Site.css"));
+          "~/Content/css.css"));
         }
     }
 }

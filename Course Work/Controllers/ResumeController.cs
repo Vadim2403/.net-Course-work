@@ -81,6 +81,7 @@ namespace Course_Work.Controllers
             ResumeModel resume = _context.resumes.FirstOrDefault(x => x.Resume_ID == id);
             OfferModel currentOffer = _context.offers.FirstOrDefault(x => x.Id == resume.Offer_Id);
             ApplicationUser currentUser = _context.Users.FirstOrDefault(x => x.Id == currentOffer.UserID);
+            resume.IsEmailed = true;
             try
             {
                 MailMessage message = new MailMessage();
@@ -98,6 +99,7 @@ namespace Course_Work.Controllers
             smtp.Credentials = new NetworkCredential("oasis.workua@gmail.com", "Qwerty-1");
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(message);
+                _context.SaveChanges();
             }
             catch (Exception) { return RedirectToAction("Index", "Offer"); }
             return RedirectToAction("Index", "Home");

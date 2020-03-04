@@ -77,11 +77,22 @@
             @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group ">
+    @*<div class="form-group ">
         @Html.Label("Category ", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10 ">
             @Html.DropDownListFor(model => model.categoryId, Model.Categories, new { htmlAttributes = new { @class = "list-group-item list-group-item-success form-control" } })
-            @Html.ValidationMessageFor(model => model.IMGUrl, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+    <div class="form-group ">
+        @Html.Label("Category ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 ">
+            @Html.DropDownListFor(model => model.categoryId, Model.Categories, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group ">
+        @Html.Label("City ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 ">
+            @Html.DropDownListFor(model => model.cityId, Model.Cities, new { @class = "form-control select2" })
         </div>
     </div>
     <div class="form-group">

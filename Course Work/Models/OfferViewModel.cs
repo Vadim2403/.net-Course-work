@@ -13,12 +13,12 @@ namespace Course_Work.Models
     {
         [Required]
         public int OfferId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Це поле обов`язково")]
         public string Title { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Це поле обов`язково")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Це поле обов`язково")]
         [Phone]
         [DataType(DataType.PhoneNumber)]
         public string UserPhone { get; set; }
@@ -26,28 +26,22 @@ namespace Course_Work.Models
         
         [Column(TypeName = "decimal")]
         public decimal Price { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Це поле обов`язково")]
         [EmailAddress]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Це поле обов`язково")]
         [DataType(DataType.ImageUrl)]
         public string IMGUrl { get; set; }
-        [Required]
+
         public string UserID { get; set; }
-        [Required]
         public List<SelectListItem> Categories { get; set; }
-        [Required]
         public int categoryId { get; set; }
-        [Required]
         public string CategoryName { get; set; }
-        [Required]
         public HttpPostedFileBase SomeFile { get; set; }
         public string FilePath { get; set; }
         public List<SelectListItem> Cities { get; set; }
-        [Required]
         public int cityId { get; set; }
-        [Required]
         public string cityName { get; set; }
 
     }

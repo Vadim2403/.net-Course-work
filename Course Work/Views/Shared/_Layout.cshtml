@@ -6,12 +6,13 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css">
 
 </head>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(31,182,115); height:50px; border-color:transparent;">
-        <img style="margin:5px; margin-left:15px; float:left; height: 40px;" src="https://cdn.icon-icons.com/icons2/2130/PNG/512/pungo_cryptocurrency_logo_icon_131407.png" />
+        <img style="margin:5px; margin-left:15px; float:left; height: 40px;" src="~/Images/005710e9-fc1b-4b61-977c-c94e4d472e81.png" />
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,7 +30,7 @@
                     </li>
                 </ul>
             </div>
-           
+
             <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")
             </div>
@@ -41,9 +42,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-     
-        </footer>
+        <footer></footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
