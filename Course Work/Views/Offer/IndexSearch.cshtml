@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<Course_Work.Models.OfferViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Search", "Offer", FormMethod.Post, new { @class = "form-wrapper cf" }))
+{
+    foreach (var i in Model)
+    {
+        <div class="form-group ">
+            @Html.Label("Category ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 ">
+                @Html.DropDownListFor(modelItem => i.categoryId, i.Categories, htmlAttributes: new { @class = "form-control", id = "categoryId", Name = "categoryId" })
+            </div>
+        </div>
+        <div class="form-group ">
+            @Html.Label("City ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 ">
+                @Html.DropDownListFor(modelItem => i.cityId, i.Cities, htmlAttributes: new { @class = "form-control select2", id = "cityId", Name = "cityId" })
+            </div>
+        </div>
+
+        break;
+    }
+
+    <input type="text" id="searchText" name="searchText" placeholder="Search here..." required>
+    <button type="submit">Serach</button>
+    <a href="@Url.Action("Index","Offer")">Back to list</a>
+}
+
+
+
+@foreach (var item in Model)
+{
+    if (item.Title != null)
+    {
+        if (item.UserID != User.Identity.GetUserId())
+        {
+            <div class="OfferElement">
+                <div style="float:left; width: 20%">
+                    <img style="height: 100px;" src="@Html.DisplayFor(modelItem => item.FilePath)" />
+                </div>
+                <div style="float:left; width: 80%;">
+                    <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                    <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
+                    <h6>Зарплата/місяць : @Html.DisplayFor(modelItem => item.Price) грн.</h6>
+                    @Html.ActionLink("More info", "MoreInfo", new { id = item.OfferId })
+                </div>
+                <hr>
+            </div>
+        }
+    }
+    else
+    {
+
+        <h1 style="color:darkred">No one founded</h1>
+
+    }
+
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+<script>
+    $('.select2').select2();
+</script>

@@ -43,6 +43,7 @@ namespace Course_Work.Models
         public List<SelectListItem> Cities { get; set; }
         public int cityId { get; set; }
         public string cityName { get; set; }
-
     }
+
+
 }
