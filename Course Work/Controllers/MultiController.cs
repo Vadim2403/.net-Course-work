@@ -42,7 +42,6 @@ namespace Course_Work.Controllers
                     {
                         Description = i.Description,
                         Email = i.Email,
-                        IMGUrl = i.IMGUrl,
                         OfferId = i.Id,
                         Price = i.Price,
                         Title = i.Title,
@@ -73,7 +72,6 @@ namespace Course_Work.Controllers
             selectOffer.OfferId = temp.Id;
             selectOffer.Title = temp.Title;
             selectOffer.Price = temp.Price;
-            selectOffer.IMGUrl = temp.IMGUrl;
             selectOffer.UserID = temp.UserID;
             selectOffer.Description = temp.Description;
             selectOffer.Email = temp.Email;
@@ -178,7 +176,6 @@ namespace Course_Work.Controllers
                 {
                     Description = model.Description,
                     Email = model.Email,
-                    IMGUrl = model.IMGUrl,
                     Price = model.Price,
                     Title = model.Title,
                     UserID = User.Identity.GetUserId(),
@@ -235,7 +232,6 @@ namespace Course_Work.Controllers
             {
                 Description = cOffer.Description,
                 Email = cOffer.Email,
-                IMGUrl = cOffer.IMGUrl,
                 OfferId = cOffer.Id,
                 Price = cOffer.Price,
                 Title = cOffer.Title,
@@ -307,7 +303,6 @@ namespace Course_Work.Controllers
                 }
             }
             var offer = _context.offers.FirstOrDefault(x => x.Id == model.OfferId);
-            offer.IMGUrl = model.IMGUrl;
             offer.Price = model.Price;
             offer.Title = model.Title;
             offer.UserID = model.UserID;

@@ -30,9 +30,7 @@ namespace Course_Work.Models
         [EmailAddress]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Це поле обов`язково")]
-        [DataType(DataType.ImageUrl)]
-        public string IMGUrl { get; set; }
+
 
         public string UserID { get; set; }
         public List<SelectListItem> Categories { get; set; }

@@ -22,7 +22,6 @@ namespace Course_Work.Entity
         public decimal Price { get; set; }
         [Required]
         public string Email { get; set; }
-        public string IMGUrl { get; set; }
         [Required]
         public string UserID { get; set; }
         [Required]

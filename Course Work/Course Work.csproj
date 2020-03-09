@@ -240,6 +240,10 @@
     <Compile Include="Migrations\202003031830279_citiesw.Designer.cs">
       <DependentUpon>202003031830279_citiesw.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003091418105_imgurl_Del.cs" />
+    <Compile Include="Migrations\202003091418105_imgurl_Del.Designer.cs">
+      <DependentUpon>202003091418105_imgurl_Del.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContentViewModel.cs" />
@@ -382,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003031830279_citiesw.resx">
       <DependentUpon>202003031830279_citiesw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003091418105_imgurl_Del.resx">
+      <DependentUpon>202003091418105_imgurl_Del.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

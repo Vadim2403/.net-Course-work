@@ -45,12 +45,12 @@ namespace Course_Work.Controllers
                 });
             }
             List<OfferViewModel> list = new List<OfferViewModel>();
-            foreach(var i in _context.offers.ToList())
+            foreach (var i in _context.offers.ToList())
             {
-                list.Add(new OfferViewModel {
+                list.Add(new OfferViewModel
+                {
                     Description = i.Description,
                     Email = i.Email,
-                    IMGUrl = i.IMGUrl,
                     Price = i.Price,
                     Title = i.Title,
                     UserPhone = i.UserPhone,
@@ -100,20 +100,38 @@ namespace Course_Work.Controllers
                     });
                 }
 
-              
+
             }
             foreach (CityModel i in cities)
             {
-                listItems2.Add(new SelectListItem
+                if (i.Id == cityid)
                 {
-                    Value = i.Id.ToString(),
-                    Text = i.City_name,
-                });
+                    listItems2.Add(new SelectListItem
+                    {
+                        Value = i.Id.ToString(),
+                        Text = i.City_name,
+                        Selected = true,
+                    });
+                }
+                else
+                {
+                    listItems2.Add(new SelectListItem
+                    {
+                        Value = i.Id.ToString(),
+                        Text = i.City_name,
+                        Selected = false,
+                    });
+                }
+
             }
-         
+
             var offers = _context.offers.ToList();
             string cityname = Find_city(cityid);
             string categoryname = Find_category(categoryid);
+            if(SearchText == null)
+            {
+                SearchText = "";
+            }
             List<OfferViewModel> list = new List<OfferViewModel>();
             foreach (var i in offers)
             {
@@ -123,7 +141,6 @@ namespace Course_Work.Controllers
                     {
                         Description = i.Description,
                         Email = i.Email,
-                        IMGUrl = i.IMGUrl,
                         Price = i.Price,
                         Title = i.Title,
                         UserPhone = i.UserPhone,
@@ -139,7 +156,7 @@ namespace Course_Work.Controllers
                     });
                 }
             }
-            if(list.Count <= 0)
+            if (list.Count <= 0)
             {
                 list.Add(new OfferViewModel()
                 {
@@ -155,8 +172,8 @@ namespace Course_Work.Controllers
 
         public ActionResult Search(string searchText, string cityId, string categoryId)
         {
-           
-            return RedirectToAction("IndexSearch", "Offer",new { SearchText = searchText, CityId = cityId, CategoryId = categoryId, });
+
+            return RedirectToAction("IndexSearch", "Offer", new { SearchText = searchText, CityId = cityId, CategoryId = categoryId, });
 
         }
 
@@ -170,7 +187,6 @@ namespace Course_Work.Controllers
             selectOffer.OfferId = temp.Id;
             selectOffer.Title = temp.Title;
             selectOffer.Price = temp.Price;
-            selectOffer.IMGUrl = temp.IMGUrl;
             selectOffer.UserID = temp.UserID;
             selectOffer.Description = temp.Description;
             selectOffer.Email = temp.Email;
