@@ -48,13 +48,16 @@
         <div class="container">
             <div class="row text-center">
              
-               <div class="form">
-                   <h4>ОТРИМАТИ ІНСТРУКЦІЮ НА ПОШТУ</h4>
-                    <form id="search-form" class="form-search form-horizontal">
-                        <input type="text" class="input-search" placeholder="Email Address">
+                <div class="form">
+                    <h4>ОТРИМАТИ ІНСТРУКЦІЮ НА ПОШТУ</h4>
+                    @using (Html.BeginForm("Email", "Home", FormMethod.Post, new { @class = "form-search form-horizontal", @id = "search-form" }))
+                    {
+                        @*<form id="search-form" class="form-search form-horizontal">*@
+                        <input type="text" name="email" class="input-search" placeholder="Email Address">
                         <button type="submit" class="btn-search">SUBMIT</button>
-                    </form>
-                </div>
+                    }
+                        @*</form>*@
+                    </div>
             
             </div>         
         </div>     
