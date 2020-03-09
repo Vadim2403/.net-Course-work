@@ -6,36 +6,115 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(31,182,115); height:50px; border-color:transparent;">
-        <img style="margin:5px; margin-left:15px; float:left; height: 40px;" src="https://cdn.icon-icons.com/icons2/2130/PNG/512/pungo_cryptocurrency_logo_icon_131407.png" />
-        <div class="container">
 
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #333333; height:50px; border-color:transparent;">
+        <img style="margin:5px; margin-left:15px; float:left; height: 40px;" src="~/Images/eacfae4c-bb7c-480d-a67b-b1faf167f75f.jpg" />
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <ul style="list-style: none;">
-                    <li class="nav-li" style="padding: 8%">
-                        <a href="@Url.Action("Index","Home", new { area = "" })" class="hover-feld">Home Page</a>
+                <ul style=" list-style: none ">
+                    <li class="nav-li" style="padding: 10px;  margin: auto;">
+                        <a href="@Url.Action("Index","Home", new { area = "" })" class="hover-feld">Home</a>
+                    </li>
+
+                    <li class="nav-li" style="padding: 10px;  margin: auto;">
+                        <a href="@Url.Action("Index","Offer", new { area = "" })" class="hover-feld">Find Work</a>
                     </li>
                 </ul>
+            </div>
 
-            </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+                @Html.Partial("_LoginPartial")
             </div>
+
+
+
         </div>
     </div>
-
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+
+        <footer style="margin-top:250px;">
+            <div class="search-text">
+                <div class="container">
+                    <div class="row text-center">
+
+                        <div class="form">
+                            <h4>ОТРИМАТИ ІНСТРУКЦІЮ НА ПОШТУ</h4>
+                            @using (Html.BeginForm("Email", "Admin", FormMethod.Post, new { @class = "form-search form-horizontal", @id = "search-form" }))
+                            {
+                                @*<form id="search-form" class="form-search form-horizontal">*@
+                                <input type="text" name="email" class="input-search" placeholder="Email Address">
+                                <button type="submit" class="btn-search">SUBMIT</button>
+                            }
+                            @*</form>*@
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-top">
+                <div class="container">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
+                        <a href="#"><i class="fa fa-facebook fa-2x"></i>Facebook</a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
+                        <a href="#"><i class="fa fa-twitter fa-2x"></i>Twitter</a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
+                        <a href="#"><i class="fa fa-flickr fa-2x"></i>Flickr</a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
+                        <a href="#"><i class="fa fa-tumblr fa-2x"></i>Tumblr</a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
+                        <a href="#"><i class="fa fa-github fa-2x"></i>Github</a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
+                        <a href="#"><i class="fa fa-google-plus fa-2x"></i>Google</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" style="border-top:1px solid grey;">
+                <div class="row text-center">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <ul class="menu">
+
+                            <li>
+                                <a href="@Url.Action("Index","Home",new { area = "" })">Home</a>
+                            </li>
+
+                            <li>
+                                <a href="https://www.work.ua">Main assistant</a>
+                            </li>
+                            <li>
+                                <a href="https://www.gearhost.com">Hosting</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Register","Account",new { area = "" })">Register</a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("Login","Account",new { area = "" })">Login</a>
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 
