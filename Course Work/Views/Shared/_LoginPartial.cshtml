@@ -1,57 +1,57 @@
 ﻿@using Microsoft.AspNet.Identity
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
 
-<ul class="nav navbar-nav navbar-right">
-    @if (User.IsInRole("Admin"))
-    {
-        <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
-            <a href="@Url.Action("Index","Manage", new { area = "" })" style="color:white;  font-size:14px;" class="hover-feld">Hello [Admin] @User.Identity.GetUserName()!</a>
+        <ul class="nav navbar-nav navbar-right">
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
+                    <a href="@Url.Action("Index","Manage", new { area = "" })" style="color:white;  font-size:14px;" class="hover-feld">Hello [Admin] @User.Identity.GetUserName()!</a>
 
-        </li>
-        @*<li>
-                @Html.ActionLink("Hello [Admin] " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>*@
-        <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
-            <a href="@Url.Action("Index","Admin", new { area = "Admin" })" style="color:white;  font-size:14px;" class="hover-feld">Manage Users</a>
+                </li>
+                @*<li>
+                        @Html.ActionLink("Hello [Admin] " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    </li>*@
+                <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
+                    <a href="@Url.Action("Index","Admin", new { area = "Admin" })" style="color:white;  font-size:14px;" class="hover-feld">Manage Users</a>
 
-        </li>
-        @*<li>
-                <a href="@Url.Action("Index","Admin", new { Area = "Admin" })">Manage Users</a>
-            </li>*@
+                </li>
+                @*<li>
+                        <a href="@Url.Action("Index","Admin", new { Area = "Admin" })">Manage Users</a>
+                    </li>*@
 
-    }
-    @if (User.IsInRole("User"))
-    {
-        <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
-            <a href="@Url.Action("Index", "Multi", new { id = User.Identity.GetUserId(), area = ""  })" style="color:white;  font-size:14px;" class="hover-feld">Hello [User] @User.Identity.GetUserName()!</a>
+            }
+            @if (User.IsInRole("User"))
+            {
+                <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
+                    <a href="@Url.Action("Index", "Multi", new { id = User.Identity.GetUserId(), area = ""  })" style="color:white;  font-size:14px;" class="hover-feld">Hello [User] @User.Identity.GetUserName()!</a>
+                </li>
 
-        </li>
+            }
+            <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
+                <a href="javascript:document.getElementById('logoutForm').submit()" style="color:white;  font-size:14px;" class="hover-feld">Log off</a>
 
-    }
-    <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
-        <a href="javascript:document.getElementById('logoutForm').submit()" style="color:white;  font-size:14px;" class="hover-feld">Log off</a>
+            </li>
 
-    </li>
-
-</ul>
+        </ul>
     }
 }
 else
 {
-<ul class="nav navbar-nav navbar-right">
-    <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
-        <a href="@Url.Action("Register","Account", new { area = "" })" style="color:white;  font-size:14px;" class="hover-feld">Register</a>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
+            <a href="@Url.Action("Register","Account", new { area = "" })" style="color:white;  font-size:14px;" class="hover-feld">Register</a>
 
-    </li>
-    <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
-        <a href="@Url.Action("Login","Account", new { area = "" })" style="color:white;  font-size:14px;" class="hover-feld">Log in</a>
+        </li>
+        <li class="nav-li" style="margin-left:10px; padding:0%; width:auto">
+            <a href="@Url.Action("Login","Account", new { area = "" })" style="color:white;  font-size:14px;" class="hover-feld">Log in</a>
 
-    </li>
+        </li>
 
 
-</ul>
+    </ul>
 }
