@@ -57,7 +57,10 @@
                 </div>
                 <div style="        float: left;
         width: 80%;">
-                    <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                    @if (item.IsVerified == true)
+                    {<h4>@Html.DisplayFor(modelItem => item.Title)  ✓ </h4>}
+                else
+                {<h4>@Html.DisplayFor(modelItem => item.Title) </h4>}
                     <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
                     <h6>Зарплата/місяць : @Html.DisplayFor(modelItem => item.Price) грн.</h6>
                     <div class="button" id="button-2" style="float:left">

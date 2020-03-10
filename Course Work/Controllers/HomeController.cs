@@ -37,7 +37,7 @@ namespace Course_Work.Controllers
                 message.From = new MailAddress("oasis.workua@gmail.com");
                 message.To.Add(new MailAddress(email));
                 message.Subject = "Інструкція";
-                var htmlString = $"Ти шо дибіл?";
+                var htmlString = $"''Інформація''";
                 message.IsBodyHtml = true;
                 message.Body = htmlString;
                 smtp.Port = 587;
@@ -48,8 +48,8 @@ namespace Course_Work.Controllers
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Send(message);
             }
-            catch (Exception) { return View(); }
-            return View();
+            catch (Exception) { return RedirectToAction("Index","Home"); }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -10,7 +10,10 @@
         width: 150px;
         border: 5px outset #333333;
         border-radius: 10px 40px 10px 40px;" src="@Html.DisplayFor(model => model.FilePath)" />
-        <h2>@Html.DisplayFor(model => model.Title)</h2>
+        @if (Model.IsVerified == true)
+        {<h2>@Html.DisplayFor(model => model.Title)  ✓ </h2>}
+    else
+    {<h2>@Html.DisplayFor(model => model.Title) </h2>}
         @if (User.Identity.IsAuthenticated && User.Identity.GetUserId() != Model.UserID)
         {
             <div class="button" id="button-2">

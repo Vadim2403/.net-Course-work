@@ -63,6 +63,7 @@ namespace Course_Work.Controllers
                     cityName = Find_city(i.cityId),
                     Categories = listItems,
                     Cities = listItems2,
+                    IsVerified = i.IsVerified,
                 });
             }
             return View(list);
@@ -153,6 +154,7 @@ namespace Course_Work.Controllers
                         cityName = Find_city(i.cityId),
                         Categories = listItems,
                         Cities = listItems2,
+                        IsVerified = i.IsVerified,
                     });
                 }
             }
@@ -196,6 +198,7 @@ namespace Course_Work.Controllers
             selectOffer.cityId = temp.cityId;
             selectOffer.cityName = Find_city(temp.cityId);
             selectOffer.FilePath = Url.Content(Constants.OfferImagePath) + temp.ImageName;
+            selectOffer.IsVerified = temp.IsVerified;
 
             return View(selectOffer);
         }

@@ -15,13 +15,16 @@
 
             off = i;
 
-            <div style="margin-top:2%;">
-                <img style="        height: 150px;
+        <div style="margin-top:2%;">
+            <img style="        height: 150px;
         width: 150px;
         border: 5px outset #333333;
         border-radius: 10px 40px 10px 40px;" src="@Html.DisplayFor(model => i.FilePath)" />
-                <h2>@Html.DisplayFor(model => i.Title)</h2>
-            </div>
+            @if (i.IsVerified == true)
+            {<h2>@Html.DisplayFor(model => i.Title)  ✓ </h2>}
+        else
+        {<h2>@Html.DisplayFor(model => i.Title) </h2>}
+        </div>
             <div>
                 <hr />
                 <dl>
@@ -111,7 +114,9 @@
 
         @if (item.IsSelected == true)
         {
-            <div style="margin: 50px;float:left; width: 92%; border: 2px solid #333333; border-left: 3px solid #11A44C !important; " class="bordered">
+            <div style="margin: 50px;float:left; width: 92%; border: 2px solid #333333; -webkit-box-shadow: 0px 0px 28px 0px rgba(32,122,2,1);
+-moz-box-shadow: 0px 0px 28px 0px rgba(32,122,2,1);
+box-shadow: 0px 0px 28px 0px rgba(32,122,2,1); " class="bordered">
 
                 <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.User_Name)</h4>
                 <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.User_Surname)</h4>

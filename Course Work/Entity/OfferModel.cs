@@ -34,5 +34,7 @@ namespace Course_Work.Entity
         public int cityId { get; set; }
         [Required]
         public string cityName { get; set; }
+
+        public bool IsVerified { get; set; }
     }
 }

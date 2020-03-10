@@ -244,6 +244,10 @@
     <Compile Include="Migrations\202003091418105_imgurl_Del.Designer.cs">
       <DependentUpon>202003091418105_imgurl_Del.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003101323471_IsVerField.cs" />
+    <Compile Include="Migrations\202003101323471_IsVerField.Designer.cs">
+      <DependentUpon>202003101323471_IsVerField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContentViewModel.cs" />
@@ -269,6 +273,7 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ShowOffers.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -389,6 +394,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003091418105_imgurl_Del.resx">
       <DependentUpon>202003091418105_imgurl_Del.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003101323471_IsVerField.resx">
+      <DependentUpon>202003101323471_IsVerField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

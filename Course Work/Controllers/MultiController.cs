@@ -52,6 +52,7 @@ namespace Course_Work.Controllers
                         FilePath = Url.Content(Constants.OfferImagePath) + i.ImageName,
                         cityId = i.cityId,
                         cityName = Find_city(i.cityId),
+                        IsVerified = i.IsVerified,
                 });
                 }
             }
@@ -81,6 +82,7 @@ namespace Course_Work.Controllers
             selectOffer.cityId = temp.cityId;
             selectOffer.cityName = Find_city(temp.cityId);
             selectOffer.FilePath = Url.Content(Constants.OfferImagePath) + temp.ImageName;
+            selectOffer.IsVerified = temp.IsVerified;
 
             List<OfferViewModel> OfferCurrent = new List<OfferViewModel>();
             OfferCurrent.Add(selectOffer);
@@ -144,7 +146,7 @@ namespace Course_Work.Controllers
         public ActionResult Create(OfferViewModel model)
         {
 
-
+            model.IsVerified = false;
             if (ModelState.IsValid)
             {
                 string link = string.Empty;
@@ -242,6 +244,7 @@ namespace Course_Work.Controllers
                 cityId = cOffer.cityId,
                 cityName = Find_city(cOffer.cityId),
                 FilePath = Url.Content(Constants.OfferImagePath) + cOffer.ImageName,
+                IsVerified = cOffer.IsVerified,
             };
             List<CategoryModel> categories = _context.categories.ToList();
             List<CityModel> cities = _context.cities.ToList();
@@ -313,6 +316,7 @@ namespace Course_Work.Controllers
             offer.CategoryName = Find_category(offer.categoryId);
             offer.cityId = model.cityId;
             offer.cityName = Find_city(offer.cityId);
+            offer.IsVerified = model.IsVerified;
             if (model.SomeFile != null)
             {
                 offer.ImageName = filename;

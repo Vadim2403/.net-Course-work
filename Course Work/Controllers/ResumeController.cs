@@ -37,6 +37,7 @@ namespace Course_Work.Controllers
         [HttpGet]
         public ActionResult Create(int id)
         {
+            var aidi = id;
             string uid = User.Identity.GetUserId();
             bool flag = false;
             List<ResumeModel> list = _context.resumes.Where(x => x.User_Id == uid)
@@ -55,7 +56,7 @@ namespace Course_Work.Controllers
                 };
                 return View(resume);
             }
-            else return RedirectToAction("Index", "Home");
+            else return RedirectToAction("MoreInfo", "Offer", new { id = aidi });
         }
         [HttpPost]
         public ActionResult Create(ResumeViewModel model)
@@ -74,7 +75,7 @@ namespace Course_Work.Controllers
                 IsSelected = false,
             });
             _context.SaveChanges();
-            return View();
+            return RedirectToAction("MoreInfo","Offer",new { id = model.Offer_Id});
         }
         public ActionResult Email(int id)
         {
@@ -89,7 +90,7 @@ namespace Course_Work.Controllers
                 message.From = new MailAddress("oasis.workua@gmail.com");
                 message.To.Add(new MailAddress(resume.User_Email));
                 message.Subject = "ANSWER FROM OASIS";
-                var htmlString = $"<div style=\"background:greenyellow\"><h1 style=\"color:white\">Ваше резюме на роботу: \"{currentOffer.Title}\" було розглянуто, будь ласкавий звязатись із роботодавцем за контактами:</h1>    <h4 style=\"color:white\">Email: {currentUser.Email}</h4>    <h4 style=\"color:white\">Phonenumber: {currentUser.PhoneNumber}</h4></div>";
+                var htmlString = $"<div><h1>Ваше резюме на роботу: \"{currentOffer.Title}\" було розглянуто, будь ласкавий звязатись із роботодавцем за контактами:</h1>    <h4>Email: {currentUser.Email}</h4>    <h4>Phonenumber: {currentUser.PhoneNumber}</h4></div>";
                 message.IsBodyHtml = true;
                 message.Body = htmlString;
                 smtp.Port = 587;
