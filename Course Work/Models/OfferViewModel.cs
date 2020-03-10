@@ -14,9 +14,11 @@ namespace Course_Work.Models
         [Required]
         public int OfferId { get; set; }
         [Required(ErrorMessage = "Це поле обов`язково")]
+        [MaxLength(50)]
         public string Title { get; set; }
         [Required(ErrorMessage = "Це поле обов`язково")]
         [DataType(DataType.MultilineText)]
+        [UIHint("DisplayPostalAddr")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Це поле обов`язково")]
         [Phone]

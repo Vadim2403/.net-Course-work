@@ -1,94 +1,92 @@
 ﻿@using Course_Work.Models;
+@using Microsoft.AspNet.Identity;
 @model dynamic
 @{
     ViewBag.Title = "MoreInfo";
 }
 
-<h2>MoreInfo</h2>
 @{
     OfferViewModel off = null;
 }
-<div>
-    <h4>OfferViewModel</h4>
-    <hr />
-    @foreach (OfferViewModel i in Model.Offer)
-    {
-        off = i;
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => i.OfferId)
-        </dt>
+<div class="container" style="margin-bottom:-250px;word-wrap: break-word;">
+    <div style="float:left; width:25%; margin-top:4%">
+        @foreach (OfferViewModel i in Model.Offer)
+        {
 
-        <dd>
-            @Html.DisplayFor(model => i.OfferId)
-        </dd>
+            off = i;
 
-        <dt>
-            @Html.DisplayNameFor(model => i.Title)
-        </dt>
+            <div style="margin-top:2%;">
+                <img style="        height: 150px;
+        width: 150px;
+        border: 5px outset #333333;
+        border-radius: 10px 40px 10px 40px;" src="@Html.DisplayFor(model => i.FilePath)" />
+                <h2>@Html.DisplayFor(model => i.Title)</h2>
+            </div>
+            <div>
+                <hr />
+                <dl>
+                    <dt>
+                        Опис:
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => i.Title)
-        </dd>
+                    <dd>
+                        <div style="
+                        width: 90%;
+                        height: 70px;
+                        overflow-y: auto;">
+                            @Html.DisplayFor(model => i.Description)
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => i.Description)
-        </dt>
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => i.Description)
-        </dd>
+                    <dt>
+                        Контактний телефон:
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => i.UserPhone)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => i.UserPhone)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => i.UserPhone)
-        </dd>
+                    <dt>
+                        Зарплата:
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => i.Price)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => i.Price)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => i.Price)
-        </dd>
+                    <dt>
+                        Контактна пошта:
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => i.Email)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => i.Email)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => i.Email)
-        </dd>
+                    <dt>
+                        Категорія:
+                    </dt>
 
-        
+                    <dd>
+                        @Html.DisplayFor(model => i.CategoryName)
+                    </dd>
+                    <dt>
+                        Місто:
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => i.UserID)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => i.cityName)
+                    </dd>
+                </dl>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => i.UserID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => i.CategoryName)
-        </dt>
+            @*@Html.ActionLink("Відгукнутися", "Create", "Resume", new { id_offer = Model.OfferId })*@
 
-        <dd>
-            @Html.DisplayFor(model => i.CategoryName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => i.cityName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => i.cityName)
-        </dd>
-    </dl>
-        @*@Html.ActionLink("Резюме", "Index", "Resume", new { id = i.OfferId });*@
-    }
+            @*@Html.ActionLink("Резюме", "Index", "Resume", new { id = i.OfferId });*@
+        }
+    </div>
+    <div style="  border-left: 3px solid #333;
+  height: 700px; float:left"></div>
     @{
         var flag = false;
         foreach (ResumeViewModel item in Model.Resumes)
@@ -99,32 +97,70 @@
             }
         }
     }
-    @foreach (ResumeViewModel item in Model.Resumes)
-    {
-        <div>
-            @if (item.IsEmailed == true)
-            {
-                <h5>EMAILED</h5>
-            }
-            else
-            { <a href="@Url.Action("Email","Resume",new { @id = item.Resume_ID })">send Email</a>}
-            @if (item.IsSelected == true)
-            {
-                <h5>SELECTED</h5>
-                <a href="@Url.Action("unSelect","Resume",new { @id = item.Resume_ID, @offer_id = off.OfferId })">UNSelect user</a>
-            }
-            else if (flag != true)
-            { <a href="@Url.Action("toSelect","Resume",new { @id = item.Resume_ID, @offer_id = off.OfferId })">Select user</a>}
-            <div style="float:left; width: 80%;">
-                <h6>@Html.DisplayFor(modelItem => item.User_Name)</h6>
-                <h6>@Html.DisplayFor(modelItem => item.User_Surname)</h6>
-                <h6>@Html.DisplayFor(modelItem => item.User_Email)</h6>
-                <h6>@Html.DisplayFor(modelItem => item.PhoneNumber)</h6>
-                <h6>@Html.DisplayFor(modelItem => item.Additionals)</h6>
+<div style="float: left;
+        margin-left: 5%;
+        width: 65%;
+        height: 600px;
+        overflow-y: auto;">
+
+
+        @foreach (ResumeViewModel item in Model.Resumes)
+        {
+    <div>
+
+
+        @if (item.IsSelected == true)
+        {
+            <div style="margin: 50px;float:left; width: 92%; border: 2px solid #333333; border-left: 3px solid #11A44C !important; " class="bordered">
+
+                <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.User_Name)</h4>
+                <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.User_Surname)</h4>
+                <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.User_Email)</h4>
+                <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.PhoneNumber)</h4>
+                <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.Additionals)</h4>
+                @if (item.IsEmailed == true)
+                {
+                    <h4 style="color:#11A44C; float:left; margin-left:10px;">Проінформований</h4>
+                }
+                else
+                { <h4 style="float:left; margin-left:2%;"><a href="@Url.Action("Email","Resume",new { @id = item.Resume_ID})">Відправити Email</a></h4>}
+                @if (item.IsSelected == true)
+                {
+                    <h4 style="float:left; margin-left:2%;"><a href="@Url.Action("unSelect","Resume",new { @id = item.Resume_ID, @offer_id = off.OfferId })">Зняти Відбір</a></h4>
+                }
+                else if (flag != true)
+                { <h4 style="float:left; margin-left:2%;"><a href="@Url.Action("toSelect","Resume",new { @id = item.Resume_ID, @offer_id = off.OfferId })">Відібрати</a></h4>}
             </div>
-            <hr>
 
-        </div>
-    }
+        }
+        else
+        {
+            <div style="margin: 50px;float:left; width: 92%; border: 2px solid #333333;" class="bordered">
 
+                <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.User_Name)</h4>
+                <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.User_Surname)</h4>
+                <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.User_Email)</h4>
+                <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.PhoneNumber)</h4>
+                <h4 style="float:left; margin-left:2%;">@Html.DisplayFor(modelItem => item.Additionals)</h4>
+                @if (item.IsEmailed == true)
+                {
+                <h4 style="color:#11A44C;float:left; margin-left:10px;">Проінформований</h4>
+                }
+                else
+                { <h4 style="float:left; margin-left:2%;"><a href="@Url.Action("Email","Resume",new { @id = item.Resume_ID})">Відправити Email</a></h4>}
+                @if (item.IsSelected == true)
+                {
+                    <h4 style="float:left; margin-left:2%;"><a href="@Url.Action("unSelect","Resume",new { @id = item.Resume_ID, @offer_id = off.OfferId })">Зняти Відбір</a></h4>
+                }
+                else if (flag != true)
+                { <h4 style="float:left; margin-left:2%;"><a href="@Url.Action("toSelect","Resume",new { @id = item.Resume_ID, @offer_id = off.OfferId })">Відібрати</a></h4>}
+            </div>
+        }
+
+
+
+    </div>
+        }
+   
+</div>
 </div>

@@ -80,7 +80,7 @@ namespace Course_Work.Controllers
             selectOffer.CategoryName = Find_category(temp.categoryId);
             selectOffer.cityId = temp.cityId;
             selectOffer.cityName = Find_city(temp.cityId);
-            selectOffer.FilePath = temp.ImageName;
+            selectOffer.FilePath = Url.Content(Constants.OfferImagePath) + temp.ImageName;
 
             List<OfferViewModel> OfferCurrent = new List<OfferViewModel>();
             OfferCurrent.Add(selectOffer);

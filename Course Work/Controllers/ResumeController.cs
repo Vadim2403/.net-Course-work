@@ -85,24 +85,24 @@ namespace Course_Work.Controllers
             try
             {
                 MailMessage message = new MailMessage();
-            SmtpClient smtp = new SmtpClient();
-            message.From = new MailAddress("oasis.workua@gmail.com");
-            message.To.Add(new MailAddress(resume.User_Email));
-            message.Subject = "ANSWER FROM OASIS";
-            var htmlString = $"<div style=\"background:greenyellow\"><h1 style=\"color:white\">Ваше резюме на роботу: \"{currentOffer.Title}\" було розглянуто, будь ласкавий звязатись із роботодавцем за контактами:</h1>    <h4 style=\"color:white\">Email: {currentUser.Email}</h4>    <h4 style=\"color:white\">Phonenumber: {currentUser.PhoneNumber}</h4></div>";
+                SmtpClient smtp = new SmtpClient();
+                message.From = new MailAddress("oasis.workua@gmail.com");
+                message.To.Add(new MailAddress(resume.User_Email));
+                message.Subject = "ANSWER FROM OASIS";
+                var htmlString = $"<div style=\"background:greenyellow\"><h1 style=\"color:white\">Ваше резюме на роботу: \"{currentOffer.Title}\" було розглянуто, будь ласкавий звязатись із роботодавцем за контактами:</h1>    <h4 style=\"color:white\">Email: {currentUser.Email}</h4>    <h4 style=\"color:white\">Phonenumber: {currentUser.PhoneNumber}</h4></div>";
                 message.IsBodyHtml = true;
-            message.Body = htmlString;
-            smtp.Port = 587;
-            smtp.Host = "smtp.gmail.com";
-            smtp.EnableSsl = true;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("oasis.workua@gmail.com", "Qwerty-1");
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.Send(message);
+                message.Body = htmlString;
+                smtp.Port = 587;
+                smtp.Host = "smtp.gmail.com";
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("oasis.workua@gmail.com", "Qwerty-1");
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
                 _context.SaveChanges();
             }
-            catch (Exception) { return RedirectToAction("Index", "Offer"); }
-            return RedirectToAction("Index", "Home");
+            catch (Exception) { return RedirectToAction("MoreInfo", "Multi", new { @id = resume.Offer_Id }); };
+            return RedirectToAction("MoreInfo", "Multi", new { @id = resume.Offer_Id });
         }
         public ActionResult toSelect(int id,int offer_id)
         {
