@@ -4,79 +4,73 @@
 @{
     ViewBag.Title = "MoreInfo";
 }
+<div class="container" style="margin-bottom:-250px;">
+    <div style="margin-top:2%;">
+        <img style="        height: 150px;
+        width: 150px;
+        border: 5px outset #333333;
+        border-radius: 10px 40px 10px 40px;" src="@Html.DisplayFor(model => model.FilePath)" />
+        <h2>@Html.DisplayFor(model => model.Title)</h2>
+        @if (User.Identity.IsAuthenticated && User.Identity.GetUserId() != Model.UserID)
+        {
+            <div class="button" id="button-2">
+                <div id="slide"></div>
+                <a class="ourA" href="@Url.Action("Create", "Resume", new { @id = Model.OfferId })">Відгукнутися</a>
+            </div>
+        }
+    </div>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Опис: 
+            </dt>
 
-<h2>MoreInfo</h2>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-<div>
-    <h4>OfferViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.OfferId)
-        </dt>
+            <dt>
+                Контактний телефон: 
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OfferId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.UserPhone)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+            <dt>
+                Зарплата: 
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                Контактна пошта: 
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserPhone)
-        </dt>
+            <dt>
+                Категорія: 
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserPhone)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+            <dt>
+                Місто: 
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cityName)
+            </dd>
+        </dl>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-    </dl>
-    <a href="@Url.Action("Create", "Resume", new { @id = Model.OfferId })">Відгукнутися</a>
     @*@Html.ActionLink("Відгукнутися", "Create", "Resume", new { id_offer = Model.OfferId })*@
 </div>
 

@@ -3,67 +3,97 @@
 @{
     ViewBag.Title = "Index";
 }
-
-@using (Html.BeginForm("Search", "Offer", FormMethod.Post, new { @class = "form-wrapper cf" }))
-{
-    foreach (var i in Model)
-    {
-        <div class="form-group ">
-            @Html.Label("Category ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10 ">
-                @Html.DropDownListFor(modelItem => i.categoryId, i.Categories, htmlAttributes: new { @class = "form-control", id = "categoryId", Name = "categoryId" })
-            </div>
-        </div>
-        <div class="form-group ">
-            @Html.Label("City ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10 ">
-                @Html.DropDownListFor(modelItem => i.cityId, i.Cities, htmlAttributes: new { @class = "form-control select2", id = "cityId", Name = "cityId" })
-            </div>
-        </div>
-
-        break;
-    }
-
-    <input type="text" id="searchText" name="searchText" placeholder="Search here..." required>
-    <button type="submit">Serach</button>
-    <a href="@Url.Action("Index","Offer")">Back to list</a>
-}
-
-
-
-@foreach (var item in Model)
-{
-    if (item.Title != null)
-    {
-        if (item.UserID != User.Identity.GetUserId())
-        {
-            <div class="OfferElement">
-                <div style="float:left; width: 20%">
-                    <img style="height: 100px;" src="@Html.DisplayFor(modelItem => item.FilePath)" />
-                </div>
-                <div style="float:left; width: 80%;">
-                    <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
-                    <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
-                    <h6>Зарплата/місяць : @Html.DisplayFor(modelItem => item.Price) грн.</h6>
-                    @Html.ActionLink("More info", "MoreInfo", new { id = item.OfferId })
-                </div>
-                <hr>
-            </div>
+    <style>
+        #mainText {
+            text-shadow: rgb(31,182,115) 1px 1px 4px;
+            width: 100%;
+            color: white;
+            text-align: center;
+            font-size: 50px;
+            padding-top: 15%;
+            font-family: 'Raleway', sans-serif;
+            font-weight: bold;
         }
-    }
-    else
-    {
 
-        <h1 style="color:darkred">No one founded</h1>
+        #shadow {
+            -webkit-box-shadow: 0px 5px 112px 0px black;
+            -moz-box-shadow: 0px 5px 112px 0px black;
+            box-shadow: 0px 5px 112px 0px black;
+        }
+    </style>
+    <body style="background-color:#464646">
+        <div class="container">
+            @using (Html.BeginForm("Search", "Offer", FormMethod.Post, new { @class = "form-wrapper cf", style = "width:100%;-webkit-box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75);-moz-box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75);box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75)" }))
+            {
+                foreach (var i in Model)
+                {
+                    <div class="form-group ">
+                        @Html.Label("Category ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 ">
+                            @Html.DropDownListFor(modelItem => i.categoryId, i.Categories, htmlAttributes: new { @class = "form-control", id = "categoryId", Name = "categoryId" })
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        @Html.Label("City ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 ">
+                            @Html.DropDownListFor(modelItem => i.cityId, i.Cities, htmlAttributes: new { @class = "form-control select2", id = "cityId", Name = "cityId" })
+                        </div>
+                    </div>
 
-    }
+                    break;
+                }
 
-}
+                <input type="text" style="width:1000px; max-width:none" id="searchText" name="searchText" placeholder="Search here...">
+                <button type="submit">Serach</button>
+                <div class="button" id="button-2" style="border-color:white; margin-top: 1%">
+                    <a class="ourA" style="color:white;" href="@Url.Action("Index","Offer")">Back to list</a>
+                </div>
+            }
+            <h1 id="mainText" style=" padding-top: 2%;">РЕЗУЛЬТАТИ ПОШУКУ</h1>
+        </div>
+        <div class="container" style="background:white; margin-top:2%; border-radius:7%; -webkit-box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75)">
 
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+            @foreach (var item in Model)
+            {
+                if (item.Title != null)
+                {
+                    if (item.UserID != User.Identity.GetUserId())
+                    {
+                        <div class="OfferElement" style="height:210px; padding:20px; margin-top:4%;border-radius:20px">
+                            <div style="float:left; width: 20%">
+                                <img style="height: 100px;" src="@Html.DisplayFor(modelItem => item.FilePath)" />
+                            </div>
+                            <div style="float:left; width: 80%;">
+                                <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                                <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
+                                <h6>Зарплата/місяць : @Html.DisplayFor(modelItem => item.Price) грн.</h6>
+                                <div class="button" id="button-2">
+                                    <div id="slide"></div>
+                                    <a class="ourA" href="@Url.Action("MoreInfo", "Offer", new { id = item.OfferId})">Детальніше</a>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <hr style="margin-bottom:4%; border: 0;height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
+                    }
+                }
+                else
+                {
 
-<script>
-    $('.select2').select2();
-</script>
+                    <h1 style="color:darkred">No one founded</h1>
+
+                }
+
+            }
+        </div>
+        </body>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+        <script>
+            $('.select2').select2();
+        </script>

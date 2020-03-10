@@ -193,6 +193,9 @@ namespace Course_Work.Controllers
             selectOffer.UserPhone = temp.UserPhone;
             selectOffer.categoryId = temp.categoryId;
             selectOffer.CategoryName = Find_category(temp.categoryId);
+            selectOffer.cityId = temp.cityId;
+            selectOffer.cityName = Find_city(temp.cityId);
+            selectOffer.FilePath = Url.Content(Constants.OfferImagePath) + temp.ImageName;
 
             return View(selectOffer);
         }

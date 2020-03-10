@@ -1,35 +1,83 @@
 ﻿@using Course_Work.Models;
+@using Microsoft.AspNet.Identity;
 @model dynamic
 @{
     ViewBag.Title = "Index";
 }
-
-@foreach (ApplicationUser i in Model.User)
-{
-    <div>
-        <h5>
-            @i.UserName
-        </h5>
-    </div>
-}
-@Html.ActionLink("Add new Offer", "Create", new { area = "" })
-
-@foreach (OfferViewModel item in Model.Offers)
-{
-    <div class="OfferElement">
-        <div style="float:left; width: 20%">
-            <img style="height: 100px;" src="@Html.DisplayFor(modelItem => item.FilePath)" />
+<div style="width:100%; height:601px; margin-bottom:-250px;">
+    <div style="float:left; width:29%; margin-top:4%">
+        @foreach (ApplicationUser i in Model.User)
+        {
+            <div style="text-align:center">
+                <img style="height: 150px; width: 150px; border-radius: 100px" src="~/Images/b62749b2-ccdd-491a-9bf6-a3f245c111cd.jpg" />
+                <h5>
+                    Ім'я<br />
+                    @i.UserName
+                </h5>
+                <hr style="margin-bottom:4%; border: 0;height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
+                <h5>
+                    Пошта<br />
+                    @i.Email
+                </h5>
+                <hr style="margin-bottom:4%; border: 0;height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);" />
+                <h5>
+                    Телефон<br />
+                    @i.PhoneNumber
+                </h5>
+            </div>
+        }
+        <div style="float:left; width: 100%">
+            <div class="button" id="button-2" style="margin: auto; left:33%">
+                <div id="slide"></div>
+                <a class="ourA" href="@Url.Action("Create", "Multi", new { area = "" })">Додати Вакансію</a>
+            </div>
         </div>
-        <div style="float:left; width: 80%;">
-            <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
-            <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
-            <h6>Зарплата/місяць : @Html.DisplayFor(modelItem => item.Price) грн.</h6>
-            @Html.ActionLink("More info", "MoreInfo", new { id = item.OfferId })
-        </div>
-        <hr>
-    </div>
-    <a href="@Url.Action("Delete", "Multi", new { id = item.OfferId, area = "" })">Delete</a>
-    @Html.ActionLink("Edit", "Edit", new { id = item.OfferId, area = "" })
-}
 
+    </div>
+    <div style="  border-left: 3px solid #333;
+  height: 603px; float:left"></div>
+    @*@Html.ActionLink("Add new Offer", "Create", new { area = "", @style="display:none" })*@
+
+    <div style="        float: left;
+        margin-left: 1%;
+        width: 69%;
+        height: 600px;
+        overflow-y: auto;">
+        <h4 style="color:#333; font-weight:bold">ВАШІ ВАКАНСІІ</h4>
+        @foreach (OfferViewModel item in Model.Offers)
+        {
+            <div class="OfferElement" style="        height: 210px;
+        padding: 20px;
+        margin-top: 4%;
+        border-radius: 20px">
+                <div style="        float: left;
+        width: 20%
+">
+                    <img style="height: 150px; width: 150px; border-radius: 100px" src="@Html.DisplayFor(modelItem => item.FilePath)" />
+                </div>
+                <div style="        float: left;
+        width: 80%;">
+                    <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                    <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
+                    <h6>Зарплата/місяць : @Html.DisplayFor(modelItem => item.Price) грн.</h6>
+                    <div class="button" id="button-2" style="float:left">
+                        <div id="slide"></div>
+                        <a class="ourA" href="@Url.Action("MoreInfo", "Offer", new { id = item.OfferId})">Детальніше</a>
+                    </div>
+                    <div class="button" id="button-2" style="float:left">
+                        <div id="slide"></div>
+                        <a class="ourA" href="@Url.Action("Delete", "Multi", new { id = item.OfferId, area = "" })">Видалити</a>
+                    </div>
+                    <div class="button" id="button-2">
+                        <div id="slide"></div>
+                        <a class="ourA" href="@Url.Action("Edit", "Multi", new { id = item.OfferId, area = "" })">Редагувати</a>
+                    </div>
+                </div>
+                <hr>
+
+            </div>
+
+        }
+    </div>
+</div>
 
