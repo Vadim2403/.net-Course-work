@@ -68,7 +68,7 @@ namespace Course_Work.Controllers
             }
             return View(list);
         }
-        public ActionResult IndexSearch(string SearchText, string CityId, string CategoryId)
+        public ActionResult IndexSearch(string SearchText, string CityId, string CategoryId, string firstdigit, string seconddigit)
         {
             List<CategoryModel> categories = _context.categories.ToList();
             List<CityModel> cities = _context.cities.ToList();
@@ -76,8 +76,19 @@ namespace Course_Work.Controllers
             List<SelectListItem> listItems2 = new List<SelectListItem>();
 
             var cityid = Convert.ToInt32(CityId);
+            var Fst = 1;
+            var Scd = 1;
             var categoryid = Convert.ToInt32(CategoryId);
-
+            if(Convert.ToInt32(firstdigit) > Convert.ToInt32(seconddigit))
+            {
+                Fst = Convert.ToInt32(seconddigit);
+                Scd = Convert.ToInt32(firstdigit);
+            }
+            else
+            {
+                Fst = Convert.ToInt32(firstdigit);
+                Scd = Convert.ToInt32(seconddigit);
+            }
             foreach (CategoryModel i in categories)
             {
 
@@ -136,7 +147,7 @@ namespace Course_Work.Controllers
             List<OfferViewModel> list = new List<OfferViewModel>();
             foreach (var i in offers)
             {
-                if (i.Title.Contains(SearchText) && i.cityName == cityname && i.CategoryName == categoryname)
+                if (i.Title.Contains(SearchText) && i.cityName == cityname && i.CategoryName == categoryname && i.Price > Fst && i.Price < Scd)
                 {
                     list.Add(new OfferViewModel
                     {
@@ -172,10 +183,10 @@ namespace Course_Work.Controllers
         }
 
 
-        public ActionResult Search(string searchText, string cityId, string categoryId)
+        public ActionResult Search(string searchText, string cityId, string categoryId, string firstDig, string secondDig)
         {
 
-            return RedirectToAction("IndexSearch", "Offer", new { SearchText = searchText, CityId = cityId, CategoryId = categoryId, });
+            return RedirectToAction("IndexSearch", "Offer", new { SearchText = searchText, CityId = cityId, CategoryId = categoryId, firstdigit = firstDig, seconddigit = secondDig });
 
         }
 
