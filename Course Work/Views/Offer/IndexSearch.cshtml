@@ -69,10 +69,13 @@ box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75)">
                     {
                         <div class="OfferElement" style="height:210px; padding:20px; margin-top:4%;border-radius:20px">
                             <div style="float:left; width: 20%">
-                                <img style="height: 100px;" src="@Html.DisplayFor(modelItem => item.FilePath)" />
+                                <img class="OffImg" style="border-radius:100px" src="@Html.DisplayFor(modelItem => item.FilePath)" />
                             </div>
                             <div style="float:left; width: 80%;">
-                                <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                                @if (item.IsVerified == true)
+                                {<h4>@Html.DisplayFor(modelItem => item.Title)  ✓ </h4>}
+                            else
+                            {<h4>@Html.DisplayFor(modelItem => item.Title) </h4>}
                                 <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
                                 <h6>Зарплата/місяць : @Html.DisplayFor(modelItem => item.Price) грн.</h6>
                                 <div class="button" id="button-2">
