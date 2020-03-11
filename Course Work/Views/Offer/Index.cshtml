@@ -50,7 +50,7 @@
                 break;
             }
 
-            <input type="text" style="width:1000px; max-width:none" id="searchText" name="searchText" placeholder="Search here...">
+            <input type="text" class="inpuserach" style="float:left" id="searchText" name="searchText" placeholder="Search here...">
             <button type="submit">Пошук</button>
         }
         <h1 id="mainText" style=" padding-top: 2%;">ЗАРАЗ ДОСТУПНО</h1>
@@ -65,7 +65,7 @@ box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75)">
             {
                 <div class="OfferElement" style="height:210px; padding:20px; margin-top:4%;border-radius:20px">
                     <div style="float:left; width: 20%">
-                        <img style="height: 150px; width:150px;border-radius:100px" src="@Html.DisplayFor(modelItem => item.FilePath)" />
+                        <img class="OffImg" style="border-radius:100px" src="@Html.DisplayFor(modelItem => item.FilePath)" />
                     </div>
                     <div style="float:left; width: 80%;">
                         @if (item.IsVerified == true)

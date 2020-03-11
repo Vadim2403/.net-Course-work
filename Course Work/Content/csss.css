@@ -527,4 +527,198 @@ section.range-slider {
     section.range-slider input[type=range]::-moz-focus-outer {
         border: 0;
     }
+
+.shka {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+}
+.mainImg {
+    height: 350px;
+    width: 500px;
+}
+
+.desc {
+    margin-left: 7%;
+    float: left;
+    font-size: 13px;
+    width: 46%
+}
+
+.mainsp {
+    font-size: 20px;
+}
+@media screen and (max-width: 1295px) {
+    .mainImg {
+        height: 300px !important;
+    }
+    #shadow{
+        height: 1000px !important;
+    }
+    .shka{
+        font-size: 34px !important;
+    }
+}
+@media screen and (max-width: 1127px) {
+    .mainImg {
+        height: 250px !important;
+        width: 400px !important;
+    }
+    .desc {
+        font-size: 12px !important;
+    }
+    .mainsp{
+        font-size:17px !important;
+    }
+    #shadow {
+        height: 800px !important;
+    }
+    #mainText {
+        font-size: 40px !important;
+    }
+    .shka {
+        font-size: 32px !important;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .mainImg {
+        height: 250px !important;
+        width: 400px !important;
+    }
+    .desc {
+        font-size: 11px !important;
+    }
+    .shka {
+        font-size: 30px !important;
+    }
+}
+
+@media screen and (max-width: 945px) {
+    .mainImg {
+        height: 225px !important;
+        width: 375px !important;
+    }
+    #shadow {
+        height: 700px !important;
+    }
+
+}
+
+@media screen and (max-width: 891px) {
+    .mainImg {
+        height: 225px !important;
+        width: 375px !important;
+    }
+    .desc {
+        font-size: 10px !important;
+    }
+    .shka {
+        font-size: 28px !important;
+    }
+}
+@media screen and (max-width: 860px) {
+    .mainImg {
+        height: 175px !important;
+        width: 275px !important;
+    }
+    .desc {
+        font-size: 8px !important;
+    }
+    #shadow {
+        height: 600px !important;
+    }
+    #mainText {
+        font-size: 30px !important;
+    }
+    .shka {
+        font-size: 22px !important;
+    }
+}
+
+@media screen and (max-width: 661px) {
+    .mainImg {
+        height: 100px !important;
+        width: 150px !important;
+    }
+
+    .desc {
+        font-size: 5px !important;
+    }
+    #shadow {
+        height: 500px !important;
+    }
+    .shka {
+        font-size: 18px !important;
+    }
+}
+.OffImg {
+    height: 150px;
+    width: 150px;
+}
+.inpuserach {
+    width: 1000px !important;
+    max-width: none;
+}
+@media screen and (max-width: 1200px) {
+    .inpuserach {
+        width: 800px !important;
+    }
+}
+
+@media screen and (max-width: 994px) {
+    .inpuserach {
+        width: 580px !important;
+    }
+    .OffImg {
+        height: 100px !important;
+        width: 100px !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    .inpuserach {
+        width: 580px !important;
+    }
+
+}
+@media screen and (max-width: 767px) {
+    .inpuserach {
+        width: 551px !important;
+    }
+}
+@media screen and (max-width: 765px) {
+    .inpuserach {
+        width: 550px !important;
+    }
+}
+@media screen and (max-width: 764px) {
+    .inpuserach {
+        width: 500px !important;
+    }
+}
+@media screen and (max-width: 715px) {
+    .inpuserach {
+        width: 470px !important;
+    }
+}
+@media screen and (max-width: 715px) {
+    .inpuserach {
+        width: 300px !important;
+    }
+}
+
+@media screen and (max-width: 677px) {
+
+    .OffImg {
+        height: 70px !important;
+        width: 70px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .OffImg {
+        height: 40px !important;
+        width: 40px !important;
+    }
+}
  
